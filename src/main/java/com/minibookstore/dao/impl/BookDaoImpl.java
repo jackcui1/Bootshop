@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,12 +59,12 @@ public class BookDaoImpl implements BookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Book> getBookList() {
-//		Query query = session().createQuery("from book");
-//		List<Book> bookList = (List<Book>)query.list();
-//		session().flush();
-//		return bookList;
-		String hql = "FROM book";
-		return (List<Book>) entityManager.createQuery(hql).getResultList();
+		Criteria crit = session().createCriteria(Book.class);
+		return crit.list();
+		
+		//It wrong 
+		//String hql = "from book";
+		//return (List<Book>) entityManager.createQuery(hql).getResultList();
 		
 	}
 
