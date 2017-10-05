@@ -32,7 +32,6 @@ public class BookDaoImpl implements BookDao {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
 	public void addBook(Book book) {
 		session().save(book);
 	}

@@ -29,7 +29,7 @@ public class BookController {
 	@Autowired
 	public BookService bookService;
 
-	@RequestMapping("/viewBook/{id}")
+	@RequestMapping("/view/{id}")
 	public String viewBook(@PathVariable("id") int id, Model model) {
 		Book book = bookService.getBookById(id);
 		model.addAttribute("book", book);
