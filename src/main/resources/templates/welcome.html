@@ -19,6 +19,8 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" th:href="@{/css/justified-nav.css}"
 	href="../css/justified-nav.css" />
+<link rel="stylesheet" th:href="@{/css/album.css}"
+	href="../css/album.css" />
 
 
 </head>
@@ -42,81 +44,73 @@
 						<li class="nav-item active"><a class="nav-link" href="#">Home
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Projects</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Services</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Downloads</a>
-						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Books</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Sign up</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="http://example.com"
-							id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">Dropdown</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown01">
-								<a class="dropdown-item" href="#">Action</a> <a
-									class="dropdown-item" href="#">Another action</a> <a
-									class="dropdown-item" href="#">Something else here</a>
-							</div></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
+		<!-- Book List -->
+		<div class="album text-muted">
+			<div class="container">
+				<div class="row">
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
 
-		<!-- Jumbotron -->
-		<div class="jumbotron">
-			<h1>Marketing stuff!</h1>
-			<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas
-				eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-				condimentum nibh, ut fermentum massa justo sit amet.</p>
-				
-			<p>
-			<span th:text="'Message: ' + ${message}"></span>
-				<a class="btn btn-lg btn-success" href="#" role="button">Get
-					started today</a>
-			</p>
-		</div>
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
+					<div class="card">
+						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
+							alt="Card image cap" />
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+					</div>
 
-		<!-- Example row of columns -->
-		<div class="row">
-			<div class="col-lg-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn btn-primary" href="#" role="button">View details
-						&raquo;</a>
-				</p>
-			</div>
-			<div class="col-lg-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn btn-primary" href="#" role="button">View details
-						&raquo;</a>
-				</p>
-			</div>
-			<div class="col-lg-4">
-				<h2>Heading</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa.</p>
-				<p>
-					<a class="btn btn-primary" href="#" role="button">View details
-						&raquo;</a>
-				</p>
+				</div>
+
 			</div>
 		</div>
+		<!-- book List end -->
+
 
 		<!-- Site footer -->
 		<footer class="footer">
-			<p>&copy; Mini Book Online Store  2017</p>
+			<p>&copy; Mini Book Online Store 2017</p>
 		</footer>
 
 	</div>

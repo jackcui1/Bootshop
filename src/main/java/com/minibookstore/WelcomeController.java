@@ -19,9 +19,9 @@ public class WelcomeController {
 		return "welcome";
 	}
 	
-	@RequestMapping("/home")
+	@RequestMapping("/index")
 	public String index(){
-		return "welcome";
+		return "index";
 	}
 
 }

@@ -34,7 +34,7 @@ public class BookDaoImpl implements BookDao {
 	
 	@Override
 	public void addBook(Book book) {
-
+		session().save(book);
 	}
 
 	@Override
@@ -46,13 +46,13 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public void deleteBook(Book book) {
-		// TODO Auto-generated method stub
+		session().delete(book);
 
 	}
 
 	@Override
 	public void editBook(Book book) {
-		// TODO Auto-generated method stub
+		session().saveOrUpdate(book);
 
 	}
 
@@ -62,7 +62,7 @@ public class BookDaoImpl implements BookDao {
 		Criteria crit = session().createCriteria(Book.class);
 		return crit.list();
 		
-		//It wrong 
+		//Error code. 
 		//String hql = "from book";
 		//return (List<Book>) entityManager.createQuery(hql).getResultList();
 		
