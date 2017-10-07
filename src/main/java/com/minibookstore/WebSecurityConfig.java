@@ -1,4 +1,6 @@
-/*package com.minibookstore;
+package com.minibookstore;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -7,30 +9,30 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/", "/index","/book/list").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN");
-    }
-}*/
+	@Autowired
+	DataSource dataSource;
+	
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth)throws Exception{
+		auth.jdbcAuthentication().dataSource(dataSource)
+			.usersByUsernameQuery("select username,password,enabled from user where username=?")
+			.authoritiesByUsernameQuery("select username,role from role where username=?");
+	}
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception{
+		http.authorizeRequests()
+			.antMatchers("/","index","/js/**","/css/**","/book/list","about").permitAll()
+			.antMatchers("/admin").hasRole("ADMIN")
+			.anyRequest().authenticated()
+			.and()
+			.formLogin().loginPage("/login").permitAll()
+			.and()
+			.logout().permitAll();
+		http.exceptionHandling().accessDeniedPage("/403");
+	}
+}

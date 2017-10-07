@@ -36,27 +36,23 @@ public class BookDaoImpl implements BookDao {
 		session().save(book);
 	}
 
-	@Override
 	public Book getBookById(int id) {
 		Book book = (Book) session().get(Book.class, id);
 		session().flush();
 		return book;
 	}
 
-	@Override
 	public void deleteBook(Book book) {
 		session().delete(book);
 
 	}
 
-	@Override
 	public void editBook(Book book) {
 		session().saveOrUpdate(book);
 
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Book> getBookList() {
 		Criteria crit = session().createCriteria(Book.class);
 		return crit.list();
