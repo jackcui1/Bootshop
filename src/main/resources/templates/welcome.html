@@ -33,6 +33,9 @@
      <a style="color:blue" th:href="@{/}">Go to Home Page!</a>
      <br/>
      
+     <div sec:authorize="isAuthenticated()">
+     	hello<span sec:authentication="name">someone</span>
+     </div>
      <form th:action="@{/logout}" method="post">
          <input type="submit" value="Sign Out"/>
      </form>
