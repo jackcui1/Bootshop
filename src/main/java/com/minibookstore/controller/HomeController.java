@@ -1,6 +1,8 @@
 package com.minibookstore.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,13 +15,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.minibookstore.model.Book;
+import com.minibookstore.repository.BookRepository;
+import com.minibookstore.service.BookService;
+
 @Controller
-public class WelcomeController {
+public class HomeController {
 	
-	@Autowired
+	@Autowired 
+	private BookService bookService;
 	
 	@RequestMapping("/")
-	public String index() {
+	public String home(Model model) {
+		List<Book> books = bookService.getBookList();
+		model.addAttribute("books", books);
 		return "index";
 	}
 
@@ -38,12 +47,12 @@ public class WelcomeController {
 		return "403";
 	}
 	
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request, HttpServletResponse response){
-		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
-		if(auth!=null){
-			new SecurityContextLogoutHandler().logout(request,response,auth);
-		}
-		return "redirect:/login?logout";
-	}
+//	@RequestMapping(value="/logout",method=RequestMethod.GET)
+//	public String logoutPage(HttpServletRequest request, HttpServletResponse response){
+//		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+//		if(auth!=null){
+//			new SecurityContextLogoutHandler().logout(request,response,auth);
+//		}
+//		return "redirect:/login?logout";
+//	}
 }

@@ -2,40 +2,51 @@ package com.minibookstore.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.minibookstore.dao.BookDao;
 import com.minibookstore.model.Book;
+import com.minibookstore.repository.BookRepository;
 import com.minibookstore.service.BookService;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
-	public BookDao bookDao;
-
+	public BookRepository bookRepository;
+	
+	
 	public void addBook(Book book) {
-		// TODO Auto-generated method stub
+		bookRepository.save(book);
 		
 	}
 
 	public Book getBookById(int id) {
-		return bookDao.getBookById(id);
+		return bookRepository.findOne(id);
 	}
 
 	public void deleteBook(Book book) {
-		// TODO Auto-generated method stub
+		bookRepository.delete(book);
 		
 	}
 
 	public void editBook(Book book) {
-		// TODO Auto-generated method stub
-		
+		bookRepository.save(book);
 	}
 
 	public List<Book> getBookList() {
-		return bookDao.getBookList();
+		return bookRepository.findAll();
+	}
+	
+	
+
+	public Page<Book> getBookList(Pageable pageable) {
+		return bookRepository.findAll(pageable);
 	}
 	
 

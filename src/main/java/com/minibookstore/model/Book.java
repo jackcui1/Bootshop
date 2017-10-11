@@ -1,6 +1,5 @@
 package com.minibookstore.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name="book")
 public class Book {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int bookid;
 	
 	@NotEmpty(message="Book Name must not be Null.")
 	private String bookname;
-	
+	private String category;
 	private String author;
 	private String publisher;
 	
@@ -30,15 +29,13 @@ public class Book {
 	
 	private String format;
 	private String language;
-
 	private String dimensions;
 	
 	private int pagecount;
 	private String isbn10;
 	private String isbn13;
-	private String category;
 	
-	private int unitinstock;
+	private int quantity;
 	
 	private int availability;
 	private String description;
@@ -142,12 +139,12 @@ public class Book {
 		this.category = category;
 	}
 
-	public int getUnitinstock() {
-		return unitinstock;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setUnitinstock(int unitinstock) {
-		this.unitinstock = unitinstock;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public int getAvailability() {
