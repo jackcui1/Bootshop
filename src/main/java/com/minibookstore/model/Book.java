@@ -40,8 +40,19 @@ public class Book {
 	private int availability;
 	private String description;
 	
+	private String imagename;
+	
 	@Transient
-	private MultipartFile bookImage;
+	private String absolutImagename;
+	
+	
+	public String getAbsolutImagename() {
+		return absolutImagename;
+	}
+
+	public void setAbsolutImagename(String absolutImagename) {
+		this.absolutImagename = absolutImagename;
+	}
 
 	public int getBookid() {
 		return bookid;
@@ -163,17 +174,12 @@ public class Book {
 		this.description = description;
 	}
 
-	public MultipartFile getBookImage() {
-		return bookImage;
+	public String getImagename() {
+		return imagename;
 	}
 
-	public void setBookImage(MultipartFile bookImage) {
-		this.bookImage = bookImage;
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
 	}
-	
-	
-	
-	
 
-	
 }

@@ -1,10 +1,14 @@
 package com.minibookstore;
 
+import java.io.IOException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.TemplateResolver;
@@ -22,13 +26,15 @@ public class BeanConfig {
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 	
-	@Bean
-	public SessionFactory getSessionFactory() {
-	    if (entityManagerFactory.unwrap(SessionFactory.class) == null) {
-	        throw new NullPointerException("factory is not a hibernate factory");
-	    }
-	    return entityManagerFactory.unwrap(SessionFactory.class);
-	}
+//	@Bean
+//	public SessionFactory getSessionFactory() {
+//	    if (entityManagerFactory.unwrap(SessionFactory.class) == null) {
+//	        throw new NullPointerException("factory is not a hibernate factory");
+//	    }
+//	    return entityManagerFactory.unwrap(SessionFactory.class);
+//	}
+	
+	
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
