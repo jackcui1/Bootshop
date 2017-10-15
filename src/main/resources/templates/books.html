@@ -16,12 +16,12 @@
 			</div>
 
 			<div class="col-lg-9">
-			<div class="row" id="rowList">
+			<div class="row rowList" >
 				<!-- <div th:if="${not #lists.isEmpty(books)}"> -->
 						<div th:each="book : ${books}" class="col-lg-4 col-md-6 mb-4">
 							<div class="card h-100">
 								<a th:href="${ '/book/view/' + book.bookid}"><img class="card-img-top"
-									src="http://placehold.it/700x400" alt="" /></a>
+									th:src="${book.absolutImagename}"  alt="" /></a>
 								<div class="card-body">
 									<h5 class="card-title">
 										<a th:href="${ '/book/view/' + book.bookid}" th:text="${book.bookname}"></a>
