@@ -49,5 +49,5 @@ public class BeanConfig {
 		templateEngine.addDialect(new SpringSecurityDialect());
 		return templateEngine;
 	}
-
+	
 }
