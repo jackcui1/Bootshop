@@ -1,4 +1,4 @@
-package com.minibookstore;
+package com.bootshop;
 
 import javax.sql.DataSource;
 
@@ -30,8 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			
 			.antMatchers("/").permitAll()
-			.antMatchers("/static/**","/js/**","/css/**").permitAll()
-			.antMatchers("/book/**").permitAll()
+			.antMatchers("/static/**","/js/**","/css/**","/bootshop/**").permitAll()
+			.antMatchers("/product/**").permitAll()
+			.antMatchers("/welcome/**").permitAll()
 			.antMatchers("/rest/cart/**").permitAll()
 			.antMatchers("/cart/**").permitAll()
 			.antMatchers("/rest/get/**").permitAll()

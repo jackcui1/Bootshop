@@ -1,4 +1,4 @@
-package com.minibookstore.model;
+package com.bootshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +18,6 @@ public class Role {
 
 	@Column(name="role")
 	private String role;
-	
-//	@OneToMany
-//	private Users users;
 	
 	private String username;
 	

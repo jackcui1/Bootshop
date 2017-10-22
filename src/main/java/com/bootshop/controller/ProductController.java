@@ -1,4 +1,4 @@
-package com.minibookstore.controller;
+package com.bootshop.controller;
 
 import java.util.List;
 
@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.minibookstore.model.Book;
-import com.minibookstore.service.BookService;
-import com.minibookstore.service.StorageFileService;
+import com.bootshop.model.Product;
+import com.bootshop.service.ProductService;
+import com.bootshop.service.StorageFileService;
 
 @Controller
-@RequestMapping("/book")
-public class BookController {
+@RequestMapping("/product")
+public class ProductController {
 
 	@Autowired 
-	private BookService bookService;
+	private ProductService productService;
 	
 	@Autowired
 	private StorageFileService storageService;
 	
 	@RequestMapping("/view/{id}")
-	public String viewBook(@PathVariable("id") int id, Model model) {
-		Book book = bookService.getBookById(id);
+	public String viewProduct(@PathVariable("id") int id, Model model) {
+		Product product = productService.getProductById(id);
 		String getFilename=MvcUriComponentsBuilder
-				.fromMethodName(BookController.class,
-						"getFile", book.getImagename()).build().toString();
-		book.setAbsolutImagename(getFilename);
+				.fromMethodName(ProductController.class,
+						"getFile", product.getImagename()).build().toString();
+		product.setAbsolutImagename(getFilename);
 		
-		model.addAttribute("book", book);
+		model.addAttribute("product", product);
 		
-		return "bookDetail";
+		return "productDetail";
 	}
 	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
-	public String bookList(Model model) {
-		List<Book> books = bookService.getBookList();
-		for(Book book:books){
+	public String productList(Model model) {
+		List<Product> products = productService.getProductList();
+		for(Product product:products){
 			String getFilename=MvcUriComponentsBuilder
-					.fromMethodName(BookController.class,
-							"getFile", book.getImagename()).build().toString();
-			book.setAbsolutImagename(getFilename);
+					.fromMethodName(ProductController.class,
+							"getFile", product.getImagename()).build().toString();
+			product.setAbsolutImagename(getFilename);
 		}
-		model.addAttribute("books", books);
-		return "books";
+		model.addAttribute("products", products);
+		return "products";
 	}
 	
 	@GetMapping("/imgfiles/{filename:.+}")

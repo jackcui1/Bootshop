@@ -1,148 +1,342 @@
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-
-
-<title>Mini Book Online Store</title>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	href="../css/bootstrap.min.css" />
-
-<!-- Custom styles for this template -->
-<link rel="stylesheet" th:href="@{/css/justified-nav.css}"
-	href="../css/justified-nav.css" />
-<link rel="stylesheet" th:href="@{/css/album.css}"
-	href="../css/album.css" />
-
-
+<html 
+	xmlns:th="http://www.thymeleaf.org">
+	
+  <head th:include="fragments/bootshop_head :: bootshop_head">
 </head>
-
 <body>
 
-<!-- test for spring security -->
-<h1 style="color:blue"> Hello! This is Welcome Page!</h1>
-     
-     <a style="color:blue" th:href="@{/}">Go to Home Page!</a>
-     <br/>
-     
-     <div sec:authorize="isAuthenticated()">
-     	hello<span sec:authentication="name">someone</span>
-     </div>
-     <form th:action="@{/logout}" method="post">
-         <input type="submit" value="Sign Out"/>
-     </form>
-     
-     
+<div th:include="fragments/bootshop_header:: bootshop_header"></div>
 
-	<div class="container">
-
-		<div class="masthead">
-			<h3 class="text-muted">Mini Book Online Store</h3>
-
-			<nav
-				class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarCollapse" aria-controls="navbarCollapse"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav text-md-center nav-justified w-100">
-						<li class="nav-item active"><a class="nav-link" href="#">Home
-								<span class="sr-only">(current)</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Books</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Sign up</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					</ul>
+<div id="carouselBlk">
+	<div id="myCarousel" class="carousel slide">
+		<div class="carousel-inner">
+		  <div class="item active">
+		  <div class="container">
+			<a href="register.html"><img style="width:100%" src="bootshop/images/carousel/1.png" alt="special offers"/></a>
+			<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
-			</nav>
-		</div>
-		<!-- Book List -->
-		<div class="album text-muted">
-			<div class="container">
-				<div class="row">
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-					<div class="card">
-						<img src="../images/thumb.svg" th:attr="src=@{/images/thumb.svg}"
-							alt="Card image cap" />
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-					</div>
-
+		  </div>
+		  </div>
+		  <div class="item">
+		  <div class="container">
+			<a href="register.html"><img style="width:100%" src="bootshop/images/carousel/2.png" alt=""/></a>
+				<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
-
+		  </div>
+		  </div>
+		  <div class="item">
+		  <div class="container">
+			<a href="register.html"><img src="bootshop/images/carousel/3.png" alt=""/></a>
+			<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				</div>
+			
+		  </div>
+		  </div>
+		   <div class="item">
+		   <div class="container">
+			<a href="register.html"><img src="bootshop/images/carousel/4.png" alt=""/></a>
+			<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				</div>
+		   
+		  </div>
+		  </div>
+		   <div class="item">
+		   <div class="container">
+			<a href="register.html"><img src="bootshop/images/carousel/5.png" alt=""/></a>
+			<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 			</div>
+		  </div>
+		  </div>
+		   <div class="item">
+		   <div class="container">
+			<a href="register.html"><img src="bootshop/images/carousel/6.png" alt=""/></a>
+			<div class="carousel-caption">
+				  <h4>Second Thumbnail label</h4>
+				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				</div>
+		  </div>
+		  </div>
 		</div>
-		<!-- book List end -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	  </div> 
+</div>
+<div id="mainBody">
+	<div class="container">
+	<div class="row">
+	<!--  ============== Sidebar ============== -->
+	<div id="sidebar" class="span3" th:include="fragments/bootshop_leftnav:: bootshop_leftnav" ></div>
+		<div class="span9">		
+			<div class="well well-small">
+			<h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+			<div class="row-fluid">
+			<div id="featured" class="carousel slide">
+			<div class="carousel-inner">
+			  <div class="item active">
+			  <ul class="thumbnails">
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/b1.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/b2.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/b3.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/b4.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+			  </div>
+			   <div class="item">
+			  <ul class="thumbnails">
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/5.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="product_details.html"><img src="bootshop/images/products/6.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/7.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/8.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right" >$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+			  </div>
+			   <div class="item">
+			  <ul class="thumbnails">
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/9.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right" >$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/10.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/11.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right" >$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/1.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+			  </div>
+			   <div class="item">
+			  <ul class="thumbnails">
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/2.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/3.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/4.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a href="product_details.html"><img src="bootshop/images/products/5.jpg" alt="" /></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+			  </div>
+			  </div>
+			  <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+			  <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+			  </div>
+			  </div>
+		</div>
+		<h4>Latest Products </h4>
+			  <ul class="thumbnails">
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/6.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					 
+					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/7.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					 <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/8.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					   <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/9.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/10.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+					<a  href="product_details.html"><img src="bootshop/images/products/11.jpg" alt=""/></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <p> 
+						Lorem Ipsum is simply dummy text. 
+					  </p>
+					   <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					</div>
+				  </div>
+				</li>
+			  </ul>	
 
-
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>&copy; Mini Book Online Store 2017</p>
-		</footer>
-
+		</div>
+		</div>
 	</div>
-	<!-- /container -->
+</div>
 
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
-		
-	</script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/popper.min.js"></script>
-	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script type="text/javascript"
-		src="../js/ie10-viewport-bug-workaround.js"></script>
+<div id="footerSection" th:include="fragments/bootshop_footer :: bootshop_footer"></div>
 </body>
 </html>

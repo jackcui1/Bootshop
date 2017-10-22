@@ -1,16 +1,12 @@
-package com.minibookstore.model;
+package com.bootshop.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -38,22 +34,17 @@ public class User {
 	private String password;
 
 	private int enabled;
+	
+	@OneToOne
+	@JoinColumn(name = "customerid")
+	private Customer customer;
 
-	private int customerId;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_role", 
-			joinColumns = @JoinColumn(name = "userid", referencedColumnName = "userid"), 
-	        inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "roleid"))
-
-	private Set<Role> role;
-
-	public Set<Role> getRole() {
-		return role;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setRole(Set<Role> role) {
-		this.role = role;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public int getUserid() {
@@ -96,12 +87,5 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
 
 }
