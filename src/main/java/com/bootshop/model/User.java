@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -21,31 +20,19 @@ public class User {
 	@Column(name = "userid")
 	private int userid;
 
-	@NotEmpty(message = "*Please provide your name")
+	//@NotEmpty(message = "*Please provide your name")
 	private String username;
 
-	@Column(name = "email")
-	@NotEmpty(message = "*Please provide a valid Email")
-	private String email;
-
 	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	//@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
 
 	private int enabled;
 	
 	@OneToOne
-	@JoinColumn(name = "customerid")
-	private Customer customer;
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+	@JoinColumn(name = "roleid")
+	private Role role;
 
 	public int getUserid() {
 		return userid;
@@ -71,14 +58,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public int getEnabled() {
 		return enabled;
 	}
@@ -87,5 +66,20 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username 
+				+ ", password=" + password + ", enabled=" + enabled
+				+  ", role=" + role + "]";
+	}
+	
 
 }

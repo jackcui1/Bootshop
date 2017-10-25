@@ -21,6 +21,13 @@ public class Role {
 	
 	private String username;
 	
+	public Role(){}
+	
+	public Role(String rolename,String username){
+		this.role=rolename;
+		this.username=username;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
