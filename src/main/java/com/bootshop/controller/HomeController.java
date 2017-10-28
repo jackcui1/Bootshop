@@ -47,9 +47,14 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping(value = { "/welcome" })
-	public String welcome() {
-		return "welcome";
+//	@RequestMapping(value =  "/welcome")
+//	public String welcome() {
+//		return "welcome";
+//	}
+	
+	@RequestMapping("/wel")
+	public String pizza() {
+		return "redirect:welcome";
 	}
 
 //	@RequestMapping(value="/login")

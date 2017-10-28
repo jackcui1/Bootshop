@@ -32,6 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/").permitAll()
 			.antMatchers("/static/**","/js/**","/css/**","/bootshop/**").permitAll()
 			.antMatchers("/product/**").permitAll()
+			//these for test
+			.antMatchers("/wel/**").permitAll()
+			.antMatchers("/welcome/**").permitAll()
+			.antMatchers("/thankYou/**").permitAll()
+			//Test end.
+			
 			.antMatchers("/welcome/**").permitAll()
 			.antMatchers("/rest/cart/**").permitAll()
 			.antMatchers("/cart/**").permitAll()
