@@ -3,7 +3,6 @@ package com.bootshop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -23,18 +22,21 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private SpringTemplateEngine springTemplateEngine;
     
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+		"classpath:/META-INF/resources/", "classpath:/resources/",
+		"classpath:/static/", "classpath:/public/" };
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-        .addResourceHandler("/resources/**")
-        .addResourceLocations("classpath*:/resources/");
+    	if (!registry.hasMappingForPattern("/webjars/**")) {
+    		registry.addResourceHandler("/webjars/**").addResourceLocations(
+    				"classpath:/META-INF/resources/webjars/");
+    	}
+    	if (!registry.hasMappingForPattern("/**")) {
+    		registry.addResourceHandler("/**").addResourceLocations(
+    				CLASSPATH_RESOURCE_LOCATIONS);
+    	}
     }
-    
 
     @Bean
     public FlowHandlerMapping flowHandlerMapping() {
@@ -60,5 +62,4 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         viewResolver.setOrder(0);
         return viewResolver;
     }
-
 }

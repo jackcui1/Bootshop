@@ -52,9 +52,9 @@ public class HomeController {
 //		return "welcome";
 //	}
 	
-	@RequestMapping("/wel")
-	public String pizza() {
-		return "redirect:welcome";
+	@RequestMapping("/toOrder")
+	public String welcome() {
+		return "redirect:/order";
 	}
 
 //	@RequestMapping(value="/login")

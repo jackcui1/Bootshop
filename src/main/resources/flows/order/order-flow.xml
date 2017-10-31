@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+
+	<view-state id="welcome">
+		<transition on="submit" to="thankYou" />
+		<transition on="cancel" to="endState" />
+	</view-state>
+
+	<action-state id="lookupCustomer">
+		<evaluate result="customerOrder.customer" expression="orderFlowAction.lookupCustomer()" />
+		<transition to="registration"
+			on-exception="com.bootshop.flow.CustomerNotFoundException" />
+		<transition to="customerReady" />
+	</action-state>
+
+	<view-state id="collectCustomerInformation">
+		<transition on="customerInfoCollected" to="collectShippingDetail" />
+	</view-state>
+
+	<view-state id="collectShippingDetail" model="order">
+		<transition on="shippingDetailCollected" to="orderConfirmation" />
+		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+	</view-state>
+
+	<view-state id="orderConfirmation">
+		<transition on="orderConfirmed" to="processOrder" />
+		<transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+	</view-state>
+
+	<action-state id="processOrder">
+		<evaluate expression="cartItemDaoImpl.removeAllCartItem(order.cart)" />
+		<transition to="thankCustomer" />
+	</action-state>
+
+	<view-state id="thankCustomer" model="order">
+		<transition on="endState" />
+	</view-state>
+	
+	<end-state id="endState" />
+
+	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
+
+	<global-transitions>
+		<transition on="cancel" to="cancelCheckout" />
+	</global-transitions>
+
+</flow>
