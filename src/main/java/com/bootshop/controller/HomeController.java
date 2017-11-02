@@ -46,16 +46,13 @@ public class HomeController {
 		model.addAttribute("products", products);
 		return "index";
 	}
-
-//	@RequestMapping(value =  "/welcome")
-//	public String welcome() {
-//		return "welcome";
-//	}
 	
-	@RequestMapping("/toOrder")
+	@RequestMapping(value =  "/welcome")
 	public String welcome() {
-		return "redirect:/order";
+		return "welcome";
 	}
+	
+
 
 //	@RequestMapping(value="/login")
 //	public String login(Model model) {
