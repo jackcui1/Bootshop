@@ -29,23 +29,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//http.csrf().disable();
 		http.authorizeRequests()
 			
+			//HomePage and other page guest can access.
 			.antMatchers("/").permitAll()
 			.antMatchers("/static/**","/js/**","/css/**","/bootshop/**").permitAll()
 			.antMatchers("/product/**").permitAll()
 			.antMatchers("/register/**").permitAll()
-			
-			//These role for webflow
-			.antMatchers("/toOrder/**").permitAll()
-			.antMatchers("/order/**").permitAll()
-			.antMatchers("/checkout/**").permitAll()
-			
-			.antMatchers("/welcome/**").permitAll()
 			.antMatchers("/rest/cart/**").permitAll()
-			.antMatchers("/cart/**").permitAll()
-			.antMatchers("/customer/**").hasRole("USER")
 			.antMatchers("/rest/get/**").permitAll()
+			.antMatchers("/cart/**").permitAll()
+			.antMatchers("/welcome/**").permitAll()
+			
+			//Web flow role
+			.antMatchers("/checkout/**").permitAll()
+			.antMatchers("/order/**").permitAll()
+			
+
+			//role for customer
+			.antMatchers("/customer/**").hasRole("USER")
+			
+			//role for administrator
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/upload-dir/**").hasRole("ADMIN")
+			
 			.anyRequest().denyAll()
 			.and()
 			.formLogin().loginPage("/login").permitAll()
