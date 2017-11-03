@@ -19,17 +19,17 @@ public class BeanConfig {
 	private EntityManagerFactory entityManagerFactory;
 	
 	
-	@Bean
+/*	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
 		BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
-	}
+	}*/
 	
-	@Bean
+/*	@Bean
 	public SpringTemplateEngine templateEngine(TemplateResolver templateResolver){
 		SpringTemplateEngine templateEngine=new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);
 		templateEngine.addDialect(new SpringSecurityDialect());
 		return templateEngine;
-	}
+	}*/
 }
