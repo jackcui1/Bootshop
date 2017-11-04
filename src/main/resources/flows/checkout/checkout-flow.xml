@@ -6,11 +6,18 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
 	<var name="order" class="com.bootshop.model.CustomerOrder" />
 
+	<action-state id="addCartToOrder">
+		<evaluate expression="cartServiceImpl.validate(requestParameters.cartid)"
+			result="order.cart" />
+		<transition to="invalidCartWarning" on-exception="java.io.IOException" />
+		<transition to="lookupCustomer" />
+	</action-state>
+
 	<action-state id="lookupCustomer">
 		<evaluate result="order.customer" expression="orderFlowAction.lookupCustomer()" />
 		<transition to="registrationForm"
-			on-exception="com.springinaction.pizza.service.CustomerNotFoundException" />
-		<transition to="showOrder" />
+			on-exception="com.bootshop.flow.CustomerNotFoundException" />
+		<transition to="orderConfirmation" />
 	</action-state>
 
 	<view-state id="registrationForm" model="order" popup="true">
@@ -23,22 +30,21 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 		<transition to="showOrder" />
 	</action-state>
 
-	<view-state id="showOrder" view="showOrder">
-		<transition on="submit" to="addCustomer" />
+	<view-state id="orderConfirmation">
+		<transition on="submit" to="saveOrder" />
 		<transition on="cancel" to="cancel" />
 	</view-state>
 
-	<view-state id="order">
-		<transition on="orderCreated" to="payment" />
-	</view-state>
-
-	<!-- <action-state id="addCartToOrder"> <evaluate expression="cartServiceImpl.validate(requestParameters.cartid)" 
-		result="order.cart" result-type="com.bootshop.model.Cart" /> <transition 
-		to="invalidCartWarning" on-exception="java.io.IOException" /> <transition 
-		to="collectCustomerInfo" /> </action-state> <view-state id="collectCustomerInfo" 
-		view="collectCustomerInfo" model="order"> <transition on="customerInfoCollected" 
-		to="collectShippingDetail" /> </view-state> -->
-
-
+	<action-state id="saveOrder">
+		<evaluate expression="customerOrderServiceImpl.addCustomerOrder(order)" />
+		<transition to="thankYou" />
+	</action-state>
+	
+	 <view-state id="thankYou">
+      <transition to="endState" />
+    </view-state>
+        
+    <!-- End state -->
+    <end-state id="endState" />
 
 </flow>
