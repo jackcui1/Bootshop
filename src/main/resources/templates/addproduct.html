@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					th:include="fragments/bootshop_leftnav:: bootshop_leftnav"></div>
+
+				<div class="span9">
+					<section id="form">
+						<div class="page-header">
+							<h3>Products Inventory Page</h3>
+							<p class="lead">This is the book inventory page!</p>
+						</div>
+
+						<form th:object="${product}" th:action="@{/admin/addproduct}"
+							method="Post" class="form-inline" enctype="multipart/form-data">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="productname">Product
+										Name</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{productname}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productbrand">Product
+										Brand</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{brand}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productcategory">Category</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{category}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productsku">Sku</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{sku}"></input>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="productmodel">Product
+										Model</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{model}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productprice">Product
+										Price</label>
+									<div class="controls">
+										<input type="text" class="input" id="input14"
+											th:field="*{price}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productbrand">Product
+										Dimensions</label>
+									<div class="controls">
+										<input type="text" class="input-large" id="input14"
+											th:field="*{dimensions}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productunitinstock">Product
+										Unit In Stock</label>
+									<div class="controls">
+										<input type="text" class="input-small" id="input14"
+											th:field="*{unitInStock}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="optionsCheckbox">Product
+										Availability</label>
+									<div class="controls">
+										<input type="checkbox" class="input-xlarge"
+											id="optionsCheckbox" value="option1"
+											th:checked="*{availability}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="productbrand">Product
+										Description</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											th:field="*{description}"></input>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="uploadPicture">Upload
+										Picture</label>
+									<div class="controls">
+										<input class="input-file" id="fileInput" name="imageFile"
+											type="file" accept="image/jpeg,image/png,image/gif" />
+									</div>
+								</div>
+
+								<div class="form-actions">
+									<button type="submit" value="submit" class="btn btn-primary">Add
+										Product</button>
+									<button class="btn" th:href="@{/admin/productmanagement/}">Cancel</button>
+								</div>
+							</fieldset>
+						</form>
+					</section>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

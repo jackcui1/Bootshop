@@ -10,25 +10,35 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 		<evaluate expression="cartServiceImpl.validate(requestParameters.cartid)"
 			result="order.cart" />
 		<transition to="invalidCartWarning" on-exception="java.io.IOException" />
+		<transition to="addCart" />
+	</action-state>
+
+	<action-state id="addCart">
+		<evaluate expression="cartServiceImpl.addCart(order.cart)" />
 		<transition to="lookupCustomer" />
 	</action-state>
 
 	<action-state id="lookupCustomer">
 		<evaluate result="order.customer" expression="orderFlowAction.lookupCustomer()" />
-		<transition to="registrationForm"
+		<transition to="registerForm"
 			on-exception="com.bootshop.flow.CustomerNotFoundException" />
-		<transition to="orderConfirmation" />
+		<transition to="collectShippingInfo" />
 	</action-state>
 
-	<view-state id="registrationForm" model="order" popup="true">
+	<view-state id="registerForm" model="order" popup="true">
 		<transition on="submit" to="addCustomer" />
 		<transition on="cancel" to="endState" />
 	</view-state>
 
 	<action-state id="addCustomer">
-		<evaluate expression="customerServiceImpl.addCustomer(order.customer)" />
-		<transition to="showOrder" />
+		<evaluate expression="customerServiceImpl.addCustomer(order.customer,order.cart)" />
+		<transition to="addCartToOrder" />
 	</action-state>
+
+	<view-state id="collectShippingInfo" view="collectShippingInfo"
+		model="order">
+		<transition on="shippingInfoCollected" to="orderConfirmation" />
+	</view-state>
 
 	<view-state id="orderConfirmation">
 		<transition on="submit" to="saveOrder" />
@@ -39,12 +49,17 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 		<evaluate expression="customerOrderServiceImpl.addCustomerOrder(order)" />
 		<transition to="thankYou" />
 	</action-state>
-	
-	 <view-state id="thankYou">
-      <transition to="endState" />
-    </view-state>
-        
-    <!-- End state -->
-    <end-state id="endState" />
+
+	<view-state id="thankYou">
+		<transition to="endState" />
+	</view-state>
+
+	<view-state id="invalidCartWarning">
+		<transition on="endState" />
+	</view-state>
+
+
+	<!-- End state -->
+	<end-state id="endState" />
 
 </flow>

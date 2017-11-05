@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="header" th:fragment="bootshop_header">
+<div class="container">
+<div id="welcomeLine" class="row">
+	<div class="span6">Welcome!&nbsp;&nbsp;<strong sec:authorize="isAuthenticated()" sec:authentication="name"> User</strong></div>
+	<div class="span6">
+	<div class="pull-right" >
+		
+		<span class="btn btn-mini" id="cart-item-grandtotal">C$0.00</span>
+		<a href="/cart/"><span class="btn btn-mini btn-primary" id="cart-item-count"><i class="icon-shopping-cart icon-white"></i> [ 0 ] Itemes in your cart </span> </a>
+		<a href="/login" sec:authorize="isAnonymous()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Login</span> </a> 
+		<a th:href="@{/logout}" sec:authorize="isAuthenticated()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Logout</span> </a>
+		<a th:href="@{/admin/}" sec:authorize-url="/admin/"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Admin</span> </a>
+		
+		
+	</div>
+	</div>
+</div>
+<!-- Navbar ================================================== -->
+<div id="logoArea" class="navbar">
+<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+</a>
+  <div class="navbar-inner">
+    <a class="brand" href="/"><img src="/bootshop/images/logo.png" alt="Bootsshop"/></a>
+		<form class="form-inline navbar-search" method="post" action="/product/list" >
+		<input id="srchFld" class="srchTxt" type="text" />
+		  <select class="srchTxt">
+			<option>All</option>
+			<option>CLOTHES </option>
+			<option>FOOD AND BEVERAGES </option>
+			<option>HEALTH | BEAUTY </option>
+			<option>SPORTS | LEISURE </option>
+			<option>BOOKS | ENTERTAINMENTS </option>
+		  </select> 
+		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+		</form>
+    <ul id="topMenu" class="nav pull-right">
+	 <li class=""><a href="/product/list">Product List</a></li>
+	 <li class=""><a href="normal.html">Delivery</a></li>
+	 <li class=""><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+<!-- Header End====================================================================== -->
+</html>
