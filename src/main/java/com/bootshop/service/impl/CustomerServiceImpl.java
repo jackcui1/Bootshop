@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bootshop.model.Cart;
 import com.bootshop.model.Customer;
+import com.bootshop.model.Role;
 import com.bootshop.repository.CustomerRepository;
 import com.bootshop.service.CartService;
 import com.bootshop.service.CustomerService;
@@ -32,17 +33,20 @@ public class CustomerServiceImpl implements CustomerService{
 	private CartService cartService;
 	
 	@Override
-	public void addCustomer(Customer customer ,Cart cart) {
-		customer.getUser().getRole().setRole("ROLE_USER");
+	public Customer addCustomer(Customer customer ,Cart cart) {
+		Role role=new Role();
+		role.setRole("ROLE_USER");
+		customer.getUser().setRole(role);
 		userService.addUser(customer.getUser());
 		shippingAddressService.addAddress(customer.getShippingAddress());
 		customer.setCart(cart);
 		cartService.addCart(customer.getCart());
-		customerRepository.save(customer);
+		return customerRepository.save(customer);
 	}
 	
 	@Override
 	public void addCustomer(Customer customer) {
+		
 		customer.getUser().getRole().setRole("ROLE_USER");
 		userService.addUser(customer.getUser());
 		shippingAddressService.addAddress(customer.getShippingAddress());

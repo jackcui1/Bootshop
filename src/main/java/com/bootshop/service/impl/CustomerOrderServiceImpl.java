@@ -23,7 +23,6 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 	
 	@Override
 	public void addCustomerOrder(CustomerOrder customerOrder) {
-		
 		customerOrderRepository.saveAndFlush(customerOrder);
 	}
 

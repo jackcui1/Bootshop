@@ -31,15 +31,20 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 	</view-state>
 
 	<action-state id="addCustomer">
-		<evaluate expression="customerServiceImpl.addCustomer(order.customer,order.cart)" />
-		<transition to="addCartToOrder" />
+		<evaluate result="order.customer" expression="customerServiceImpl.addCustomer(order.customer,order.cart)" />
+		<transition to="collectShippingInfo" />
 	</action-state>
 
 	<view-state id="collectShippingInfo" view="collectShippingInfo"
 		model="order">
-		<transition on="shippingInfoCollected" to="orderConfirmation" />
+		<transition on="shippingInfoCollected" to="updateShippingInfo" />
 	</view-state>
-
+	
+	<action-state id="updateShippingInfo">
+		<evaluate result="order.shippingAddress" expression="shippingAddressServiceImpl.addAddress(order.customer.shippingAddress)" />
+		<transition to="orderConfirmation" />
+	</action-state>
+	
 	<view-state id="orderConfirmation">
 		<transition on="submit" to="saveOrder" />
 		<transition on="cancel" to="cancel" />
@@ -55,7 +60,7 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 	</view-state>
 
 	<view-state id="invalidCartWarning">
-		<transition on="endState" />
+		<transition to="endState" />
 	</view-state>
 
 

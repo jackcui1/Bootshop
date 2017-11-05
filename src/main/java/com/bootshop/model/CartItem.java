@@ -20,7 +20,7 @@ public class CartItem implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@JsonIgnore
+	//@JsonIgnore
 	private int cartitemid;
 
 	@ManyToOne

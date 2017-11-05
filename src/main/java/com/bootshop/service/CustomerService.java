@@ -6,7 +6,7 @@ import com.bootshop.model.Cart;
 import com.bootshop.model.Customer;
 
 public interface CustomerService {
-	void addCustomer(Customer customer,Cart cart);
+	Customer addCustomer(Customer customer,Cart cart);
 	void addCustomer(Customer customer);
 	Customer getCustomerById(int id);
 	Customer getCustomerBycustomername(String customername);

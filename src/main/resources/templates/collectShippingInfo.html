@@ -18,9 +18,8 @@
 				<div id="sidebar" class="span9">
 					<h1>Shipping address collection</h1>
 					<form method="post" th:object="${order}">
-						 <input type="hidden" name="_flowExecutionKey"
-							th:value="${flowExecutionKey}" />
-						 <input type="hidden"
+						<input type="hidden" name="_flowExecutionKey"
+							th:value="${flowExecutionKey}" /> <input type="hidden"
 							th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
 						<div class="control-group">
@@ -33,7 +32,7 @@
 									placeholder="Apartment number" />
 							</div>
 						</div>
-		
+
 						<div class="control-group">
 							<label class="control-label" for="streetName">StreetName</label>
 							<div class="controls">
@@ -46,8 +45,7 @@
 						<div class="control-group">
 							<label class="control-label" for="city">City<sup>*</sup></label>
 							<div class="controls">
-								<input type="text"
-									th:field="*{customer.shippingAddress.city}"
+								<input type="text" th:field="*{customer.shippingAddress.city}"
 									class="input-xlarge" id="city" placeholder="city" />
 							</div>
 						</div>
@@ -69,7 +67,7 @@
 									class="input-xlarge" id="ZipCode" placeholder="ZipCode" />
 							</div>
 						</div>
-						
+
 						<p>
 							<sup>*</sup>Required field
 						</p>
