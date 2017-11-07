@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import com.bootshop.model.FirstCategory;
 import com.bootshop.model.Product;
+import com.bootshop.service.FirstCategoryService;
 import com.bootshop.service.ProductService;
 import com.bootshop.service.StorageFileService;
 
@@ -28,6 +30,9 @@ public class ProductController {
 	
 	@Autowired
 	private StorageFileService storageService;
+	
+	@Autowired
+	private FirstCategoryService firstCategoryService;
 	
 	@RequestMapping("/view/{id}")
 	public String viewProduct(@PathVariable("id") int id, Model model) {
@@ -52,9 +57,25 @@ public class ProductController {
 			product.setAbsolutImagename(getFilename);
 		}
 		model.addAttribute("products", products);
+		List<FirstCategory> firstCategories =firstCategoryService.findAll();
+		model.addAttribute("firstCategories",firstCategories);
 		
 		return "products";
 	}
+	
+	@RequestMapping(value="/list/firstcategory/{firstcategoryid",method=RequestMethod.GET)
+	public String productListByfirstCategoryId(@PathVariable int firstCategoryId,Model model){
+		List<Product> products = productService.getProductListByFirstCategoryId(firstCategoryId);
+		for(Product product:products){
+			String getFilename=MvcUriComponentsBuilder
+					.fromMethodName(ProductController.class,
+							"getFile", product.getImagename()).build().toString();
+			product.setAbsolutImagename(getFilename);
+		}
+		model.addAttribute("products", products);
+		return "products";
+	}
+	
 	
 	@GetMapping("/imgfiles/{filename:.+}")
 	@ResponseBody

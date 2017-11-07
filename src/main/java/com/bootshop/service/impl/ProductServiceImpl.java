@@ -48,6 +48,17 @@ public class ProductServiceImpl implements ProductService {
 	public Page<Product> getProductList(Pageable pageable) {
 		return productRepository.findAll(pageable);
 	}
-	
 
+	@Override
+	public List<Product> getProductListByFirstCategoryId(int firstCategoryId) {
+		
+		return productRepository.getProductListByFirstCategoryId(firstCategoryId);
+	}
+
+	@Override
+	public List<Product> getProductListBySecondCategoryId(int secondCategoryId) {
+		return productRepository.getProductListBySecondCategoryId(secondCategoryId);
+	}
+
+	
 }
