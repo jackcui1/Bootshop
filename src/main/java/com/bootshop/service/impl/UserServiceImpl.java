@@ -1,14 +1,10 @@
 package com.bootshop.service.impl;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bootshop.model.Role;
 import com.bootshop.model.User;
 import com.bootshop.repository.RoleRepository;
 import com.bootshop.repository.UserRepository;

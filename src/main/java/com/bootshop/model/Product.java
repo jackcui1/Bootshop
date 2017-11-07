@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -32,7 +34,15 @@ public class Product implements Serializable{
 	@NotEmpty(message="Product Name must not be Null.")
 	private String productname;
 	
-	private String category;
+	//private String category;
+	@ManyToOne
+	@JoinColumn(name="firstcategoryid")
+	private FirstCategory firstCategory;
+	
+	@ManyToOne
+	@JoinColumn(name="secondcategoryid")
+	private SecondCategory secondCategory;
+	
 	private String brand;
 	private String model;
 	private String sku;
@@ -82,14 +92,7 @@ public class Product implements Serializable{
 		this.productname = productname;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
+	
 	public String getBrand() {
 		return brand;
 	}

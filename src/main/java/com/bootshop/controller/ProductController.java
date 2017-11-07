@@ -52,6 +52,7 @@ public class ProductController {
 			product.setAbsolutImagename(getFilename);
 		}
 		model.addAttribute("products", products);
+		
 		return "products";
 	}
 	

@@ -3,7 +3,6 @@ package com.bootshop.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.bootshop.model.Cart;
 import com.bootshop.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{

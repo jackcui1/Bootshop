@@ -7,12 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bootshop.model.Cart;
 import com.bootshop.model.CustomerOrder;
 import com.bootshop.repository.CustomerOrderRepository;
-import com.bootshop.service.CartService;
 import com.bootshop.service.CustomerOrderService;
-import com.bootshop.service.CustomerService;
 
 @Service
 @Transactional
