@@ -15,12 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.bootshop.model.Cart;
 import com.bootshop.model.CartItem;
-import com.bootshop.model.Customer;
-import com.bootshop.model.CustomerOrder;
 import com.bootshop.service.CartItemService;
 import com.bootshop.service.CartService;
 import com.bootshop.service.CustomerOrderService;
@@ -80,7 +77,6 @@ public class OrderController {
 				for(CartItem cartItem: cart.getCartItems()){
 					cartItem.setCart(cart);
 				}
-					
 				cartService.addCart(cart);
 				cartItemService.addOrUpdateCartItems(cart.getCartItems());
 				return "redirect:/checkout?cartid=" + cartid;

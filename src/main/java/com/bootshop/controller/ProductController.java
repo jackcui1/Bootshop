@@ -50,12 +50,7 @@ public class ProductController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String productList(Model model) {
 		List<Product> products = productService.getProductList();
-		for(Product product:products){
-			String getFilename=MvcUriComponentsBuilder
-					.fromMethodName(ProductController.class,
-							"getFile", product.getImagename()).build().toString();
-			product.setAbsolutImagename(getFilename);
-		}
+		addProductImagePath(products);
 		model.addAttribute("products", products);
 		List<FirstCategory> firstCategories =firstCategoryService.findAll();
 		model.addAttribute("firstCategories",firstCategories);
@@ -63,19 +58,34 @@ public class ProductController {
 		return "products";
 	}
 	
-	@RequestMapping(value="/list/firstcategory/{firstcategoryid",method=RequestMethod.GET)
-	public String productListByfirstCategoryId(@PathVariable int firstCategoryId,Model model){
-		List<Product> products = productService.getProductListByFirstCategoryId(firstCategoryId);
+	@RequestMapping(value="/list/firstcategory/{id}",method=RequestMethod.GET)
+	public String productListByfirstCategoryId(@PathVariable int id,Model model){
+		List<Product> products = productService.getProductListByFirstCategoryId(id);
+		addProductImagePath(products);
+		model.addAttribute("products", products);
+		List<FirstCategory> firstCategories =firstCategoryService.findAll();
+		model.addAttribute("firstCategories",firstCategories);
+		return "products";
+	}
+	
+	@RequestMapping(value="/list/secondcategory/{id}",method=RequestMethod.GET)
+	public String productListBySecondCategoryId(@PathVariable int id,Model model){
+		List<Product> products = productService.getProductListByFirstCategoryId(id);
+		addProductImagePath(products);
+		model.addAttribute("products", products);
+		List<FirstCategory> firstCategories =firstCategoryService.findAll();
+		model.addAttribute("firstCategories",firstCategories);
+		return "products";
+	}
+	
+	public void addProductImagePath(List<Product> products){
 		for(Product product:products){
 			String getFilename=MvcUriComponentsBuilder
 					.fromMethodName(ProductController.class,
 							"getFile", product.getImagename()).build().toString();
 			product.setAbsolutImagename(getFilename);
 		}
-		model.addAttribute("products", products);
-		return "products";
 	}
-	
 	
 	@GetMapping("/imgfiles/{filename:.+}")
 	@ResponseBody

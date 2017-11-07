@@ -9,11 +9,21 @@ $(document).ready(function(){
 	})
 	$(function() {
 		$('#gallery a').lightBox();
+		var div=document.getElementById('.subMenu'); 
+		var ul=div.childNodes.item(0); 
+		var lis=ul.childNodes; 
+		for(var i=0;i<lis.length;i++){ 
+		alert("Item "+i+": "+lis.item(i).innerHTML); 
+		
+		
 	});
+	
+	
 	
 	$('.subMenu > a').click(function(e)
 	{
 		e.preventDefault();
+		
 		var subMenu = $(this).siblings('ul');
 		var li = $(this).parents('li');
 		var subMenus = $('#sidebar li.subMenu ul');
@@ -38,6 +48,7 @@ $(document).ready(function(){
 			subMenus_parents.removeClass('open');		
 			li.addClass('open');	
 		}
+		$('.subMenu > a').unbind("click");
 	});
 	var ul = $('#sidebar > ul');
 	$('#sidebar > a').click(function(e)
