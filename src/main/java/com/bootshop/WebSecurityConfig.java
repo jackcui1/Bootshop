@@ -43,7 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/checkout/**").permitAll()
 			.antMatchers("/order/**").permitAll()
 			
-
+			//paypal test
+			.antMatchers("/pay/**").permitAll()
+			
 			//role for customer
 			.antMatchers("/customer/**").hasRole("USER")
 			
