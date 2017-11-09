@@ -1,5 +1,5 @@
 package com.bootshop;
 
 public enum PaypalPaymentIntent {
-	    sale, authorize, order
+	sale, authorize, order
 }

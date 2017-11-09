@@ -22,8 +22,8 @@ import com.paypal.base.rest.PayPalRESTException;
 @RequestMapping("/pay")
 public class PaymentController {
 
-	public static final String PAYPAL_SUCCESS_URL = "pay/success";
-	public static final String PAYPAL_CANCEL_URL = "pay/cancel";
+	public static final String PAYPAL_SUCCESS_URL = "pay/paidsuccess";
+	public static final String PAYPAL_CANCEL_URL = "pay/cancelpayment";
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -42,7 +42,7 @@ public class PaymentController {
 		String successUrl = URLUtils.getBaseURl(request) + "/"
 				+ PAYPAL_SUCCESS_URL;
 		try {
-			Payment payment = paypalService.createPayment(500.00, "USD",
+			Payment payment = paypalService.createPayment(10.00, "USD",
 					PaypalPaymentMethod.paypal, PaypalPaymentIntent.sale,
 					"payment description", cancelUrl, successUrl);
 			for (Links links : payment.getLinks()) {
