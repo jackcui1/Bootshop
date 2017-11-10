@@ -39,7 +39,7 @@ public class OrderController {
 
 	@Autowired
 	CustomerService customerService;
-	
+
 	@Autowired
 	CartItemService cartItemService;
 
@@ -74,8 +74,12 @@ public class OrderController {
 			}
 			// 2. Create cart if cart is null.
 			if (cart.getCartid().equals(cartid)) {
-				for(CartItem cartItem: cart.getCartItems()){
-					cartItem.setCart(cart);
+				if (cart.getCartItems().size() != 0) {
+					for (CartItem cartItem : cart.getCartItems()) {
+						cartItem.setCart(cart);
+					}
+				} else {
+					return "invalidCartWarning";
 				}
 				cartService.addCart(cart);
 				cartItemService.addOrUpdateCartItems(cart.getCartItems());

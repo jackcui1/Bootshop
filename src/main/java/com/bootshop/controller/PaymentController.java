@@ -36,15 +36,22 @@ public class PaymentController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/pay")
-	public String pay(HttpServletRequest request) {
-		String cancelUrl = URLUtils.getBaseURl(request) + "/"
-				+ PAYPAL_CANCEL_URL;
-		String successUrl = URLUtils.getBaseURl(request) + "/"
-				+ PAYPAL_SUCCESS_URL;
+	public String toPaypal(HttpServletRequest request) {
+		/*
+		 * String cancelUrl = URLUtils.getBaseURl(request) + "/" +
+		 * PAYPAL_CANCEL_URL; String successUrl = URLUtils.getBaseURl(request) +
+		 * "/" + PAYPAL_SUCCESS_URL;
+		 */
+		// generate Spring Webflow return URL
+		String url = request.getRequestURL() + ";jsessionid="
+				+ request.getSession().getId() + "?" + request.getQueryString();
+		String paypalCancelUrl = url + "&_eventId=cancel";
+		String paypalApprovedUrl = url + "&_eventId=approved";
+
 		try {
 			Payment payment = paypalService.createPayment(10.00, "USD",
 					PaypalPaymentMethod.paypal, PaypalPaymentIntent.sale,
-					"payment description", cancelUrl, successUrl);
+					"payment description", paypalCancelUrl, paypalApprovedUrl);
 			for (Links links : payment.getLinks()) {
 				if (links.getRel().equals("approval_url")) {
 					return "redirect:" + links.getHref();
