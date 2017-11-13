@@ -17,10 +17,7 @@
 				<!--  ============== Sidebar end ============== -->
 				<div class="span4">
 					<h3>Take payment</h3>
-					<form class="form-horizontal" th:object="${order}" method="POST">
-						<input type="hidden" name="_flowExecutionKey"
-							th:value="${flowExecutionKey}" /> <input type="hidden"
-							th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<form class="form-horizontal"  >
 						<button type="submit" name="_eventId_submit">
 							<img src="/images/PP_150x94.png" width="100px;" height="30px;" />
 						</button>

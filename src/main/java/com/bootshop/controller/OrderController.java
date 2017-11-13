@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,13 +50,19 @@ public class OrderController {
 	private String getCurrentUsername() {
 		return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
-
-	@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
+	
+	@RequestMapping(value="/order/")
+	public String displayOrder(){
+		return "cart";
+	}
+	
+	/*@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
 	public String createOrder(@PathVariable String cartid,
 			HttpServletRequest request, HttpServletResponse response)
 			throws JsonParseException, JsonMappingException,
 			UnsupportedEncodingException, IOException {
 		Cart cart = null;
+		
 		if (getCurrentUsername().equals("anonymousUser")) {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.setSerializationInclusion(Include.NON_NULL);
@@ -79,17 +86,17 @@ public class OrderController {
 						cartItem.setCart(cart);
 					}
 				} else {
-					return "invalidCartWarning";
+					return "redirect:/cart";
 				}
 				cartService.addCart(cart);
 				cartItemService.addOrUpdateCartItems(cart.getCartItems());
 				return "redirect:/checkout?cartid=" + cartid;
 			} else {
-				return "invalidCartWarning";
+				return "redirect:/cart";
 			}
 		} else {
 
-			/*
+			
 			 * CustomerOrder customerOrder = new CustomerOrder(); Cart cart =
 			 * cartService.getCartById(cartid); customerOrder.setCart(cart);
 			 * Customer customer =
@@ -97,8 +104,18 @@ public class OrderController {
 			 * customerOrder.setCustomer(customer);
 			 * customerOrder.setShippingAddress(customer.getShippingAddress());
 			 * customerOrderService.addCustomerOrder(customerOrder);
-			 */
+			 
 			return "redirect:/checkout?cartid=" + cartid;
 		}
+	}*/
+	
+	@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
+	public String createOrder(@PathVariable String cartid,Model model) {
+		Cart cart = null;
+		if (getCurrentUsername().equals("anonymousUser")) {
+			return "redirect:/login";
+		}
+		return "checkout";
+		
 	}
 }

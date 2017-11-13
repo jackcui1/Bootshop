@@ -9,10 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.webflow.execution.RequestContext;
+import org.springframework.webflow.execution.RequestContextHolder;
 
 import com.bootshop.PaypalPaymentIntent;
 import com.bootshop.PaypalPaymentMethod;
 import com.bootshop.URLUtils;
+import com.bootshop.model.CustomerOrder;
 import com.bootshop.service.PaypalService;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
@@ -30,23 +33,28 @@ public class PaymentController {
 	@Autowired
 	private PaypalService paypalService;
 
-	@RequestMapping(method = RequestMethod.GET)
+/*	@RequestMapping(method = RequestMethod.GET)
 	public String index() {
+		
 		return "pay";
-	}
+	}*/
 
 	@RequestMapping(method = RequestMethod.POST, value = "/pay")
-	public String toPaypal(HttpServletRequest request) {
+	public String toPaypal(HttpServletRequest request,RequestContext context,CustomerOrder order) {
 		/*
 		 * String cancelUrl = URLUtils.getBaseURl(request) + "/" +
 		 * PAYPAL_CANCEL_URL; String successUrl = URLUtils.getBaseURl(request) +
 		 * "/" + PAYPAL_SUCCESS_URL;
 		 */
 		// generate Spring Webflow return URL
+//		RequestContext rc = RequestContextHolder.getRequestContext();
+		//CustomerOrder customerOrder=(CustomerOrder) context.getConversationScope().get("order");
+		String webflowUrl=context.getFlowExecutionUrl();
 		String url = request.getRequestURL() + ";jsessionid="
 				+ request.getSession().getId() + "?" + request.getQueryString();
 		String paypalCancelUrl = url + "&_eventId=cancel";
 		String paypalApprovedUrl = url + "&_eventId=approved";
+		//double amount=customerOrder.getCart().getGrandTotal();
 
 		try {
 			Payment payment = paypalService.createPayment(10.00, "USD",

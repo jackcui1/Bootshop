@@ -13,13 +13,18 @@ import org.springframework.webflow.executor.FlowExecutor;
 import org.springframework.webflow.mvc.builder.MvcViewFactoryCreator;
 import org.springframework.webflow.security.SecurityFlowExecutionListener;
 
+import com.bootshop.flow.PaymentAction;
+
 @Configuration
 public class WebFlowConfig extends AbstractFlowConfiguration {
 
 	@Autowired
     private List<ViewResolver> viewResolvers;
-
-    @Bean
+	
+	@Autowired
+	PaymentAction paymentAction;
+	
+	@Bean
     public FlowExecutor flowExecutor() {
         return getFlowExecutorBuilder(flowRegistry())
         		.addFlowExecutionListener(new SecurityFlowExecutionListener(),"*")
