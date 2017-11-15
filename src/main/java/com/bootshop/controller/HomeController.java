@@ -39,24 +39,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/")
-	public String home(Model model) {
-		List<Product> products = productService.getProductList();
-		for(Product product:products){
-			String getFilename=MvcUriComponentsBuilder
-					.fromMethodName(ProductController.class,
-							"getFile", product.getImagename()).build().toString();
-			product.setAbsolutImagename(getFilename);
-		}
-		model.addAttribute("products", products);
-		List<FirstCategory> firstCategories =firstCategoryService.findAll();
-		model.addAttribute("firstCategories",firstCategories);
-		return "index";
+	public String resthome() {
+		return "restindex";
 	}
 	
-	@RequestMapping(value =  "/welcome")
+/*	@RequestMapping(value =  "/welcome")
 	public String welcome() {
 		return "welcome";
-	}
+	}*/
 	
 
 
@@ -68,16 +58,5 @@ public class HomeController {
 	@RequestMapping(value = "/403")
 	public String error403() {
 		return "403";
-	}
-	
-	@GetMapping("/imgfiles/{filename:.+}")
-	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-		Resource file = storageService.loadFile(filename);
-		return ResponseEntity
-				.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION,
-						"attachment; filename=\"" + file.getFilename() + "\"")
-				.body(file);
 	}
 }

@@ -36,36 +36,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 				// HomePage and other page guest can access.
-				.antMatchers("/")
-				.permitAll()
-				.antMatchers("/static/**", "/js/**", "/css/**", "/bootshop/**")
-				.permitAll()
-				.antMatchers("/product/**")
-				.permitAll()
-				.antMatchers("/register/**")
-				.permitAll()
-				.antMatchers("/rest/cart/**")
-				.permitAll()
-				.antMatchers("/rest/get/**")
-				.permitAll()
-				.antMatchers("/cart/**")
-				.permitAll()
-				.antMatchers("/welcome/**")
-				.permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/static/**", "/js/**", "/css/**", "/bootshop/**","/imgfiles/**").permitAll()
+				
+				.antMatchers("/product/**").permitAll()
+				.antMatchers("/register/**").permitAll()
+				.antMatchers("/rest/**").permitAll()
+				.antMatchers("/cart/**").permitAll()
+				.antMatchers("/welcome/**").permitAll()
 
 				// Web flow role
-				.antMatchers("/checkout/**")
-				.permitAll()
-				.antMatchers("/order/**")
-				.permitAll()
+				.antMatchers("/checkout/**").permitAll()
+				.antMatchers("/order/**").permitAll()
 
 				// paypal test
-				.antMatchers("/pay/**")
-				.permitAll()
+				.antMatchers("/pay/**").permitAll()
 
 				// role for customer
-				.antMatchers("/customer/**")
-				.hasRole("USER")
+				.antMatchers("/customer/**").hasRole("USER")
 
 				// role for administrator
 				.antMatchers("/admin/**").hasRole("ADMIN")

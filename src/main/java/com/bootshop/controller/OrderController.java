@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bootshop.model.Cart;
 import com.bootshop.model.CartItem;
+import com.bootshop.model.Customer;
+import com.bootshop.model.CustomerOrder;
 import com.bootshop.service.CartItemService;
 import com.bootshop.service.CartService;
 import com.bootshop.service.CustomerOrderService;
@@ -111,11 +113,15 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
 	public String createOrder(@PathVariable String cartid,Model model) {
-		Cart cart = null;
 		if (getCurrentUsername().equals("anonymousUser")) {
 			return "redirect:/login";
 		}
+		CustomerOrder order=new CustomerOrder();
+		Customer customer=customerService.getCustomerBycustomername(getCurrentUsername());
+		order.setCustomer(customer);
+		Cart cart=cartService.getCartById(cartid);
+		order.setCart(cart);
+		model.addAttribute("customerOrder",order);
 		return "checkout";
-		
 	}
 }

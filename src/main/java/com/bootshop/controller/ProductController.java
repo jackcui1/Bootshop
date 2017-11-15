@@ -38,7 +38,7 @@ public class ProductController {
 	public String viewProduct(@PathVariable("id") int id, Model model) {
 		Product product = productService.getProductById(id);
 		String getFilename=MvcUriComponentsBuilder
-				.fromMethodName(ProductController.class,
+				.fromMethodName(ImageController.class,
 						"getFile", product.getImagename()).build().toString();
 		product.setAbsolutImagename(getFilename);
 		
@@ -81,21 +81,10 @@ public class ProductController {
 	public void addProductImagePath(List<Product> products){
 		for(Product product:products){
 			String getFilename=MvcUriComponentsBuilder
-					.fromMethodName(ProductController.class,
+					.fromMethodName(ImageController.class,
 							"getFile", product.getImagename()).build().toString();
 			product.setAbsolutImagename(getFilename);
 		}
-	}
-	
-	@GetMapping("/imgfiles/{filename:.+}")
-	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-		Resource file = storageService.loadFile(filename);
-		return ResponseEntity
-				.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION,
-						"attachment; filename=\"" + file.getFilename() + "\"")
-				.body(file);
 	}
 
 }

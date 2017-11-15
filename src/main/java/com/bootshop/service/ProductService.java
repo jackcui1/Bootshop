@@ -16,5 +16,6 @@ public interface ProductService {
 	List<Product> getProductList();
 	List<Product> getProductListByFirstCategoryId(int firstCategoryId);
 	List<Product> getProductListBySecondCategoryId(int secondCategoryId);
+	long getProductCount();
 	
 }

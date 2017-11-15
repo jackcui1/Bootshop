@@ -4,11 +4,12 @@
 	<div  th:fragment="bootshop_leftnav">
 		
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			<li class="subMenu open" th:each="firstCategory : ${firstCategories}"  ><a th:text="${firstCategory.name}" th:href="${'/product/list/firstcategory/' + firstCategory.id}"> </a>
+			<li class="subMenu open" ng-repeat="firstCategory in categories"  ><a href="#" ng-click="getProductsByFirstCategoryId(firstCategory.id)"> {{firstCategory.name}}</a>
 				<ul>
-					<li th:each="secondCategory: ${firstCategory.secondCategories}">
-						<a class="active" th:text="${secondCategory.name}" th:href="${'/product/list/secondcategoryid/'+secondCategory.id}" >
-					  		<i class="icon-chevron-right"></i>
+					<li ng-repeat="secondCategory in firstCategory.secondCategories">
+						<a class="active" href="#" ng-click="getProductsBySecondCategoryId(secondCategory.id)">
+					  		<!-- <i class="icon-chevron-right">{{secondCategory.name}}</i> -->
+					  		{{secondCategory.name}}
 						</a>
 					</li>
 				</ul>

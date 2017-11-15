@@ -60,5 +60,11 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.getProductListBySecondCategoryId(secondCategoryId);
 	}
 
+	@Override
+	public long getProductCount() {
+		return productRepository.count();
+		
+	}
+
 	
 }
