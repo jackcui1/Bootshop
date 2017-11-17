@@ -89,5 +89,11 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerRepository.findOneByCartid(cartid);
 	}
 
+	@Override
+	public boolean isCustomerExist(int id) {
+		
+		return customerRepository.exists(id);
+	}
+
 
 }

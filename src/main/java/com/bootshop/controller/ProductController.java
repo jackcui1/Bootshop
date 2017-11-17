@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
@@ -34,8 +35,8 @@ public class ProductController {
 	@Autowired
 	private FirstCategoryService firstCategoryService;
 	
-	@RequestMapping("/view/{id}")
-	public String viewProduct(@PathVariable("id") int id, Model model) {
+	@RequestMapping("/view/")
+	public String viewProduct(@RequestParam("id") int id, Model model) {
 		Product product = productService.getProductById(id);
 		String getFilename=MvcUriComponentsBuilder
 				.fromMethodName(ImageController.class,
@@ -44,20 +45,15 @@ public class ProductController {
 		
 		model.addAttribute("product", product);
 		
-		return "productDetail";
+		return "restproductDetail";
 	}
+	
 	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String productList(Model model) {
-		List<Product> products = productService.getProductList();
-		addProductImagePath(products);
-		model.addAttribute("products", products);
-		List<FirstCategory> firstCategories =firstCategoryService.findAll();
-		model.addAttribute("firstCategories",firstCategories);
-		
 		return "products";
 	}
-	
+	/*
 	@RequestMapping(value="/list/firstcategory/{id}",method=RequestMethod.GET)
 	public String productListByfirstCategoryId(@PathVariable int id,Model model){
 		List<Product> products = productService.getProductListByFirstCategoryId(id);
@@ -77,7 +73,7 @@ public class ProductController {
 		model.addAttribute("firstCategories",firstCategories);
 		return "products";
 	}
-	
+	*/
 	public void addProductImagePath(List<Product> products){
 		for(Product product:products){
 			String getFilename=MvcUriComponentsBuilder

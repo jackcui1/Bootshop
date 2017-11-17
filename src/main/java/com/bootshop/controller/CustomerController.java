@@ -41,18 +41,18 @@ public class CustomerController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegister(Model model) {
-		Customer customer = new Customer();
+	/*	Customer customer = new Customer();
 		User user = new User();
 		user.setEnabled(1);
 		user.setRole(new Role("ROLE_USER",user.getUsername()));
 		customer.setUser(user);
 		customer.setShippingAddress(new ShippingAddress());
 		model.addAttribute("customer", customer);
-		logger.info("======" + customer);
-		return "registration";
+		logger.info("======" + customer);*/
+		return "restRegisterForm";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String addCustomer(Customer customer,HttpServletRequest request) {
 		
 		String sessionId = request.getSession(true).getId();
@@ -70,5 +70,5 @@ public class CustomerController {
 		customerService.addCustomer(customer);
 		
 		return "redirect:/login";
-	}
+	}*/
 }
