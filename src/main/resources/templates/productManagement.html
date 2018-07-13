@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					th:include="fragments/bootshop_leftnav:: bootshop_leftnav"></div>
+
+				<div class="span9">
+					<section id="Table">
+						<div class="page-header">
+							<h3>Products Inventory Page</h3>
+							<p class="lead">This is the product inventory page!</p>
+						</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Product Name</th>
+									<th>Category</th>
+									<th>Brand</th>
+									<th>Unit In Stock</th>
+									<th>Price</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="product : ${products}">
+									<td th:text="${product.productid}"></td>
+									<td th:text="${product.productname}"></td>
+									<td th:text="${product.category}"></td>
+									<td th:text="${product.brand}"></td>
+									<td th:text="${product.unitInStock}"></td>
+									<td th:text="${product.price}"></td>
+									<td>
+										<a th:href="${'/product/view/'+product.productid}"> <span
+											class=""><i class="icon-info-sign icon-white"></i></span>
+									</a> <a th:href="${'/admin/deleteproduct/'+product.productid}"> <span
+											class="glyphicon glyphicon-remove"><i class="icon-remove icon-white"></i></span>
+									</a> <a th:href="${'/admin/editproduct/'+product.productid}"> <span
+											class="glyphicon glyphicon-pencil"><i class="icon-edit icon-white"></i></span>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					<a href="/admin/addproduct/" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn btn-primary">Add</span></a>
+					</section>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

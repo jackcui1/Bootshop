@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					th:include="fragments/bootshop_leftnav:: bootshop_leftnav"></div>
+
+				<div class="span9">
+					<h1>Administrator Page</h1>
+					<h3>
+						Welcome: <span sec:authentication="name">username</span> | <a
+							th:href="@{/logout}">Logout</a>
+					</h3>
+					<h3>
+						<a th:href="@{/admin/productmanagement}">Product management</a>
+					</h3>
+
+					<p>Here you can view, add and modify the book inventory</p>
+
+					<h3>
+						<a th:href="@{/admin/customerment}">Customer Management</a>
+					</h3>
+					<p>Here you can view and manage customer information</p>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

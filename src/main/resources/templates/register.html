@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	
+  <head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+<div id="mainBody">
+	<div class="container">
+	<div class="row">
+	<!--  ============== Sidebar ============== -->
+	<div id="sidebar" class="span3" th:include="fragments/bootshop_leftnav:: bootshop_leftnav" >
+	</div>
+	<!--  ============== Sidebar end ============== -->
+	
+	<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li class="active">Registration</li>
+    </ul>
+	<h3> Registration</h3>	
+	<div class="well">
+	
+	<form  class="form-horizontal" th:action="@{/customer/register}" method="POST">
+		<h4>Your personal information</h4>
+
+		<div class="control-group">
+			<label class="control-label" for="username">Your login name<sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.user.username}" class="input-xlarge" id="customername" placeholder="Your login name" />
+			</div>
+		 </div>
+		 
+		 <div class="control-group">
+			<label class="control-label" for="username">Your password<sup>*</sup></label>
+			<div class="controls">
+			  <input type="password" th:field="*{customer.user.password}" class="input-xlarge" id="customername" placeholder="Your password" />
+			</div>
+		 </div>
+		
+		<h4>Your personal information</h4>
+
+		<div class="control-group">
+			<label class="control-label" for="customername">Your name <sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.customername}" class="input-xlarge" id="customername" placeholder="Your name" />
+			</div>
+		 </div>
+		 
+		 <div class="control-group">
+			<label class="control-label" for="email">Your email <sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.email}" class="input-xlarge" id="email" placeholder="email" />
+			</div>
+		 </div>
+		 
+		  <div class="control-group">
+			<label class="control-label" for="phone">Your phone number <sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.phone}" class="input-xlarge" id="phone" placeholder="phone" />
+			</div>
+		 </div>
+		
+
+	<!-- <div class="alert alert-block alert-error fade in">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	 </div>	 -->
+
+		<h4>Your address</h4>
+		<div class="control-group">
+			<label class="control-label" for="apartmentNumber">Your apartment number</label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.shippingAddress.apartmentNumber}" class="input-xlarge" id="apartmentNumber" placeholder="Apartment number" />
+			</div>
+		 </div> 
+		
+		<div class="control-group">
+			<label class="control-label" for="streetName">StreetName</label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.shippingAddress.streetName}" class="input-xlarge" id="streetName" placeholder="streetName" />
+			</div>
+		 </div>
+		 
+		<div class="control-group">
+			<label class="control-label" for="city">City<sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.shippingAddress.city}" class="input-xlarge" id="city" placeholder="city" />
+			</div>
+		 </div>
+		 
+		 	<div class="control-group">
+			<label class="control-label" for="country">Country</label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.shippingAddress.country}" class="input-xlarge" id="country" placeholder="country" />
+			</div>
+		 </div>
+		 
+		 	<div class="control-group">
+			<label class="control-label" for="ZipCode">ZipCode<sup>*</sup></label>
+			<div class="controls">
+			  <input type="text" th:field="*{customer.shippingAddress.ZipCode}" class="input-xlarge" id="ZipCode" placeholder="ZipCode" />
+			</div>
+		 </div>
+		 
+		<p><sup>*</sup>Required field	</p>
+		<div class="control-group">
+			<button type="submit" value="submit" class="btn btn-primary">Register</button>
+		</div>	
+	</form>
+</div>
+
+</div>
+	
+		
+		</div>
+		</div>
+	</div>
+<div id="footerSection" th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>
