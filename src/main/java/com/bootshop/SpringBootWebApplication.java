@@ -1,4 +1,4 @@
-package com.bootshop.config;
+package com.bootshop;
 
 import javax.annotation.Resource;
 
@@ -27,7 +27,7 @@ public class SpringBootWebApplication {
 	}
 
 	// To excute storage file service for image storing.
-	public void run(String args) throws Exception {
-		storageFileService.init();
-	}
+//	public void run(String args) throws Exception {
+//		storageFileService.init();
+//	}
 }

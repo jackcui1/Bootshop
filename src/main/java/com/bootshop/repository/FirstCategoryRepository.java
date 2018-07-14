@@ -1,24 +1,14 @@
 package com.bootshop.repository;
 
 
-import javax.transaction.Transactional;
-
+import com.bootshop.model.CartItem;
+import com.bootshop.model.FirstCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.bootshop.model.CartItem;
+import javax.transaction.Transactional;
 
-public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
-	
-	@Modifying
-    @Transactional
-	@Query(value="delete from cartitem where productid=?1",nativeQuery = true)
-	void deleteByProductid(int productid);
-	
-	@Modifying
-    @Transactional
-	@Query(value="delete from cartitem where cartid=?1",nativeQuery = true)
-	void deleteByCartid(String cartid);
+public interface FirstCategoryRepository extends JpaRepository<FirstCategory, Integer> {
 
 }

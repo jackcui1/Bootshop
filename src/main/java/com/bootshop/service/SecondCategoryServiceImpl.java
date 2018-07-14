@@ -1,4 +1,4 @@
-package com.bootshop.service.impl;
+package com.bootshop.service;
 
 import com.bootshop.service.SecondCategoryService;
 import org.springframework.stereotype.Service;

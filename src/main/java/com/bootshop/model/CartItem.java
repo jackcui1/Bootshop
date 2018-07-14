@@ -81,8 +81,8 @@ public class CartItem implements Serializable {
 	@JsonIgnore
 	public int hashCode() {
 		int result = 17;
-		result = 31 * result + this.product.getProductname().hashCode();
-		result=31*result+this.product.getProductid();
+		result = 31 * result + this.product.getName().hashCode();
+		result=31*result+this.product.getId();
 		result=31*result+this.product.getBrand().hashCode();
 		return result;
 	}
@@ -97,9 +97,9 @@ public class CartItem implements Serializable {
 			return false;
 		}
 		CartItem other = (CartItem) obj;
-		return other.product.getProductid() == this.product.getProductid()
-				|| (other.product.getProductname().equals(this.product.getProductname())
-						&& other.product.getProductname() != null && this.product.getProductname() != null);
+		return other.product.getId() == this.product.getId()
+				|| (other.product.getName().equals(this.product.getName())
+						&& other.product.getName() != null && this.product.getName() != null);
 	}
 
 	@Override

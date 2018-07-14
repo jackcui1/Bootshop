@@ -18,23 +18,23 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 @Entity
 @Table(name="product")
+@Data
 public class Product implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int productid;
+	private Integer id;
 	
 	@NotEmpty(message="Product Name must not be Null.")
-	private String productname;
+	private String name;
 	
-	//private String category;
 	@ManyToOne
 	@JoinColumn(name="firstcategoryid")
 	private FirstCategory firstCategory;
@@ -66,113 +66,7 @@ public class Product implements Serializable{
 	
 	@Transient
 	private String absolutImagename;
-	
-	
-	public int getProductid() {
-		return productid;
-	}
 
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-	
-	public String getSku() {
-		return sku;
-	}
 
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
-
-	public String getProductname() {
-		return productname;
-	}
-
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
-
-	
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String getDimensions() {
-		return dimensions;
-	}
-
-	public void setDimensions(String dimensions) {
-		this.dimensions = dimensions;
-	}
-
-	public int getUnitInStock() {
-		return unitInStock;
-	}
-
-	public void setUnitInStock(int unitInStock) {
-		this.unitInStock = unitInStock;
-	}
-
-	public List<CartItem> getCartItemList() {
-		return cartItemList;
-	}
-
-	public void setCartItemList(List<CartItem> cartItemList) {
-		this.cartItemList = cartItemList;
-	}
-
-	public int getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(int availability) {
-		this.availability = availability;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImagename() {
-		return imagename;
-	}
-
-	public void setImagename(String imagename) {
-		this.imagename = imagename;
-	}
-
-	public String getAbsolutImagename() {
-		return absolutImagename;
-	}
-
-	public void setAbsolutImagename(String absolutImagename) {
-		this.absolutImagename = absolutImagename;
-	}
-	
-	
 
 }

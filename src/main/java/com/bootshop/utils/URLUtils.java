@@ -1,4 +1,4 @@
-package com.bootshop;
+package com.bootshop.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

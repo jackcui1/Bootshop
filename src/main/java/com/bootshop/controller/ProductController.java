@@ -37,14 +37,14 @@ public class ProductController {
 	
 	@RequestMapping("/view/")
 	public String viewProduct(@RequestParam("id") int id, Model model) {
-		Product product = productService.getProductById(id);
-		String getFilename=MvcUriComponentsBuilder
-				.fromMethodName(ImageController.class,
-						"getFile", product.getImagename()).build().toString();
-		product.setAbsolutImagename(getFilename);
-		
-		model.addAttribute("product", product);
-		
+//		Product product = productService.findById(id);
+//		String getFilename=MvcUriComponentsBuilder
+//				.fromMethodName(ImageController.class,
+//						"getFile", product.getImagename()).build().toString();
+//		product.setAbsolutImagename(getFilename);
+//
+//		model.addAttribute("product", product);
+//
 		return "restproductDetail";
 	}
 	

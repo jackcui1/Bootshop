@@ -8,14 +8,30 @@ import org.springframework.data.domain.Pageable;
 import com.bootshop.model.Product;
 
 public interface ProductService {
-	void addProduct(Product product);
-	Product getProductById(int id);
-	void deleteProduct(Product product);
-	void editProduct(Product product);
-	Page<Product> getProductList(Pageable pageable);
-	List<Product> getProductList();
-	List<Product> getProductListByFirstCategoryId(int firstCategoryId);
-	List<Product> getProductListBySecondCategoryId(int secondCategoryId);
-	long getProductCount();
-	
+
+
+    void add(Product product);
+
+    Product findById(Integer id);
+//
+//    void delete(Product product);
+//
+//    void deleteById(Integer id);
+//
+//    void update(Product product);
+//
+//    Page<Product> findAll(Pageable pageable);
+//
+//    Page<Product> findByFistCategoryId(Integer id, Pageable pageable);
+//
+//    Page<Product> findBySecondCategoryId(Integer id, Pageable pageable);
+//
+    List<Product> findAll();
+//
+//    List<Product> findByFirstCategoryId(Integer id);
+//
+//    List<Product> findAllBySecondCategoryId(Integer id);
+//
+//    long Count();
+
 }

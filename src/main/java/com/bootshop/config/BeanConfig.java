@@ -1,4 +1,5 @@
-package com.bootshop;
+/*
+package com.bootshop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,17 +17,21 @@ import javax.persistence.EntityManagerFactory;
 public class BeanConfig {
 
 
+*/
 /*	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
 		BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
-	}*/
+	}*//*
+
 	
+*/
 /*	@Bean
 	public SpringTemplateEngine templateEngine(TemplateResolver templateResolver){
 		SpringTemplateEngine templateEngine=new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);
 		templateEngine.addDialect(new SpringSecurityDialect());
 		return templateEngine;
-	}*/
-}
+	}*//*
+
+}*/

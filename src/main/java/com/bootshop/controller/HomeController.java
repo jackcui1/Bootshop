@@ -39,8 +39,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/")
-	public String resthome() {
-		return "restindex";
+	public String home() {
+		return "index";
 	}
 	
 /*	@RequestMapping(value =  "/welcome")

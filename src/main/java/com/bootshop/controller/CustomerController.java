@@ -21,27 +21,27 @@ import com.bootshop.service.CustomerService;
 import com.bootshop.service.ShippingAddressService;
 import com.bootshop.service.UserService;
 
-@SessionAttributes({ "cusotmer" })
+@SessionAttributes({"cusotmer"})
 @Controller
 public class CustomerController {
 
-	@Autowired
-	private CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private CartService cartService;
+    @Autowired
+    private CartService cartService;
 
-	@Autowired
-	private ShippingAddressService shippingAddressService;
+    @Autowired
+    private ShippingAddressService shippingAddressService;
 
-	Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String showRegister(Model model) {
-	/*	Customer customer = new Customer();
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String showRegister(Model model) {
+    /*	Customer customer = new Customer();
 		User user = new User();
 		user.setEnabled(1);
 		user.setRole(new Role("ROLE_USER",user.getUsername()));
@@ -49,8 +49,8 @@ public class CustomerController {
 		customer.setShippingAddress(new ShippingAddress());
 		model.addAttribute("customer", customer);
 		logger.info("======" + customer);*/
-		return "restRegisterForm";
-	}
+        return "restRegisterForm";
+    }
 
 	/*@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String addCustomer(Customer customer,HttpServletRequest request) {

@@ -1,4 +1,4 @@
-package com.bootshop;
+package com.bootshop.config.paypal;
 
 import java.util.HashMap;
 import java.util.Map;

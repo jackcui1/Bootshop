@@ -1,3 +1,4 @@
+/*
 package com.bootshop.controller.admin;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class ProductAdminController {
 
 	@RequestMapping("/productmanagement")
 	public String productAdmin(Model model) {
-		List<Product> products = productService.getProductList();
+		List<Product> products = productService.findAll();
 		model.addAttribute("products", products);
 		return "productmanagement";
 	}
@@ -41,7 +42,7 @@ public class ProductAdminController {
 	@RequestMapping("/editproduct/{productid}")
 	public String showEditProductForm(@PathVariable("productid") int productid,
 			Model model) {
-		Product product = productService.getProductById(productid);
+		Product product = productService.findById(productid);
 		model.addAttribute("product", product);
 		return "editproduct";
 	}
@@ -52,12 +53,12 @@ public class ProductAdminController {
 			String fileName = imageFile.getOriginalFilename();
 			String extensionName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			
-			product.setImagename(product.getProductid()+product.getProductname()+product.getSku()+"."+extensionName);
+			product.setImagename(product.getId()+product.getName()+product.getSku()+"."+extensionName);
 			
 			storageService.store(imageFile,product.getImagename());
 		}
-		productService.editProduct(product);
-		return "redirect:/product/view/" + product.getProductid();
+		productService.update(product);
+		return "redirect:/product/view/" + product.getId();
 	}
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.GET)
@@ -74,17 +75,17 @@ public class ProductAdminController {
 			String fileName = imageFile.getOriginalFilename();
 			String extensionName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			
-			product.setImagename(product.getProductid()+product.getProductname()+"."+extensionName);
+			product.setImagename(product.getId()+product.getName()+"."+extensionName);
 			
 			storageService.store(imageFile,product.getImagename());
 		}
-		productService.addProduct(product);
-		return "redirect:/product/view/" + product.getProductid();
+		productService.add(product);
+		return "redirect:/product/view/" + product.getId();
 	}
 
 	@RequestMapping(value = "/deleteproduct/{productid}", method = RequestMethod.GET)
 	public String deleteProduct(@PathVariable int productid) {
-		productService.deleteProduct(productService.getProductById(productid));
+		productService.delete(productService.findById(productid));
 		return "redirect:/admin/productmanagement";
 	}
 
@@ -99,3 +100,4 @@ public class ProductAdminController {
 				.body(file);
 	}
 }
+*/
