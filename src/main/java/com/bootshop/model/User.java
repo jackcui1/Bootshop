@@ -1,5 +1,7 @@
 package com.bootshop.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +37,12 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "roleid")
 	private Role role;
-
+	
+	
+	public User(){
+		
+	}
+	
 	public int getUserid() {
 		return userid;
 	}

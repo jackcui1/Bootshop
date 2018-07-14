@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					th:include="fragments/bootshop_leftnav:: bootshop_leftnav"></div>
+				<!--  ============== Sidebar end ============== -->
+				<div id="sidebar" class="span9">
+					<h1>Shipping address collection</h1>
+					<form method="post" th:object="${order}">
+						<input type="hidden" name="_flowExecutionKey"
+							th:value="${flowExecutionKey}" /> <input type="hidden"
+							th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+						<div class="control-group">
+							<label class="control-label" for="apartmentNumber">Your
+								apartment number</label>
+							<div class="controls">
+								<input type="text"
+									th:field="*{customer.shippingAddress.apartmentNumber}"
+									class="input-xlarge" id="apartmentNumber"
+									placeholder="Apartment number" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="streetName">StreetName</label>
+							<div class="controls">
+								<input type="text"
+									th:field="*{customer.shippingAddress.streetName}"
+									class="input-xlarge" id="streetName" placeholder="streetName" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="city">City<sup>*</sup></label>
+							<div class="controls">
+								<input type="text" th:field="*{customer.shippingAddress.city}"
+									class="input-xlarge" id="city" placeholder="city" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="country">Country</label>
+							<div class="controls">
+								<input type="text"
+									th:field="*{customer.shippingAddress.country}"
+									class="input-xlarge" id="country" placeholder="country" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="ZipCode">ZipCode<sup>*</sup></label>
+							<div class="controls">
+								<input type="text"
+									th:field="*{customer.shippingAddress.ZipCode}"
+									class="input-xlarge" id="ZipCode" placeholder="ZipCode" />
+							</div>
+						</div>
+
+						<p>
+							<sup>*</sup>Required field
+						</p>
+						<hr class="soft" />
+						<div class="control-group">
+							<button class="btn btn-large" name="_eventId_cancel"
+								value="cancel">cancel</button>
+							<button class="btn btn-large pull-right"
+								name="_eventId_shippingInfoCollected" value="submit">submit</button>
+						</div>
+
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

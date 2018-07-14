@@ -30,7 +30,13 @@ public class CustomerOrder implements Serializable{
 	@OneToOne
 	@JoinColumn(name="shippingaddressid")
 	private ShippingAddress shippingAddress;
-
+	
+	public CustomerOrder(){
+		customer=new Customer();
+		cart=new Cart();
+		shippingAddress=new ShippingAddress();
+	}
+	
 	public int getOrderid() {
 		return orderid;
 	}
@@ -62,6 +68,15 @@ public class CustomerOrder implements Serializable{
 	public void setShippingAddress(ShippingAddress shippingAddress) {
 		this.shippingAddress = shippingAddress;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerOrder [orderid=" + orderid + ", cart=" + cart
+				+ ", customer=" + customer + ", shippingAddress="
+				+ shippingAddress + "]";
+	}
+
+	
 	
 	
 }

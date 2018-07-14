@@ -1,4 +1,3 @@
-
 var cartApp = angular.module ("cartApp", []);
 
 cartApp.controller("cartCtrl", function ($scope, $http){

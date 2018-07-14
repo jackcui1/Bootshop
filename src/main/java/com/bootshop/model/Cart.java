@@ -8,7 +8,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,6 +27,11 @@ public class Cart implements Serializable {
 
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartItem> cartItems;
+	
+	@OneToOne
+	@JoinColumn(name="customerId")
+	@JsonIgnore
+	private Customer customer;
 	
 	private double grandTotal;
 	

@@ -6,11 +6,13 @@ import com.bootshop.model.Cart;
 import com.bootshop.model.Customer;
 
 public interface CustomerService {
+	Customer addCustomer(Customer customer,Cart cart);
 	void addCustomer(Customer customer);
 	Customer getCustomerById(int id);
 	Customer getCustomerBycustomername(String customername);
-	//boolean findCustomerByCart(Cart cart);
+	Customer findCustomerByCartid(String cartid);
 	List<Customer> getCustomerAll();
 	void deleteCustomer(Customer customer);
 	void editCustomer(Customer customer);
+	boolean isCustomerExist(int id);
 }

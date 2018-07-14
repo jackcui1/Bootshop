@@ -2,10 +2,10 @@ package com.bootshop.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +18,16 @@ public class ShippingAddress implements Serializable{
 	@GeneratedValue
 	private int shippingaddressid;
 	
+	@Column(name="streetname")
 	private String streetName;
+	@Column(name="apartmentnumber")
 	private String apartmentNumber;
+	
+	@Column(name="city")
 	private String city;
+	
 	private String country;
+	@Column(name="zipcode")
 	private String ZipCode;
 	
 	public int getShippingaddressid() {

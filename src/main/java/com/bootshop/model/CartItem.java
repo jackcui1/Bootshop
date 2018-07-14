@@ -20,12 +20,12 @@ public class CartItem implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@JsonIgnore
+	//@JsonIgnore
 	private int cartitemid;
 
 	@ManyToOne
-	@JoinColumn(name = "cartid")
 	@JsonIgnore
+	@JoinColumn(name = "cartid")
 	private Cart cart;
 
 	@ManyToOne

@@ -39,6 +39,25 @@ public class Customer implements Serializable{
 	@JoinColumn(name="userid")
 	private User user;
 	
+	
+	public Customer(int customerid, String customername, String email,
+			String phone, ShippingAddress shippingAddress, Cart cart, User user) {
+		super();
+		this.customerid = customerid;
+		this.customername = customername;
+		this.email = email;
+		this.phone = phone;
+		this.shippingAddress = shippingAddress;
+		this.cart = cart;
+		this.user = user;
+	}
+	
+	public Customer(){
+		this.cart = new Cart();
+		this.shippingAddress=new ShippingAddress();
+		this.user=new User();
+	}
+	
 	public User getUser() {
 		return user;
 	}

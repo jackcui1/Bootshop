@@ -28,7 +28,7 @@
 					<hr class="soft" />
 					<table class="table table-bordered" sec:authorize="isAnonymous()">
 						<tr>
-							<th>I AM ALREADY REGISTERED</th>
+							<th>I AM ALREADY REGISTERED </th>
 						</tr>
 						<tr>
 							<td>
@@ -58,8 +58,9 @@
 							</td>
 						</tr>
 					</table>
-
-						<table class="table table-bordered" ng-controller="cartCtrl" ng-init="init()" >
+					
+						<div ng-controller="cartCtrl" ng-init="init()">
+						<table class="table table-bordered"  >
 							<thead>
 								<tr>
 									<th>Product</th>
@@ -93,11 +94,12 @@
 								</tr>
 							</tbody>
 						</table>
-
+						
 						<a ng-click="clearCart()" class="btn btn-large"><i
-							class="icon-arrow-left"></i> Clear Cart </a> <a href="login.html"
-							class="btn btn-large pull-right">Next <i
-							class="icon-arrow-right"></i></a>
+							class="icon-arrow-left"></i> Clear Cart </a> 
+						<a th:href="@{/order/{{cart.cartid}}}" class="btn btn-large pull-right">Next 
+						<i class="icon-arrow-right"></i></a>
+						</div>
 				</div>
 
 			</div>
