@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bootshop.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,6 +62,7 @@ public class CartRestController {
 			JsonMappingException, IOException {
 
 		Cart cart = null;
+		String sessionId = request.getSession(true).getId();
 		if (getCurrentUsername() == "anonymousUser") {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.setSerializationInclusion(Include.NON_NULL);
@@ -79,11 +81,17 @@ public class CartRestController {
 			}
 			// 2. Create cart if cart is null.
 			if (cart == null) {
-				String sessionId = request.getSession(true).getId();
 				cart = new Cart(sessionId);
 			}
 		} else {
-			cart = customerService.getCustomerBycustomername(getCurrentUsername()).getCart();
+			Customer customer = customerService.getCustomerBycustomername(getCurrentUsername());
+			if (customer.getCart() == null) {
+				cart = new Cart(sessionId);
+				cartService.addCart(cart);
+				customer.setCart(cart);
+				customerService.editCustomer(customer);
+			}
+			cart = customer.getCart();
 		}
 		return cart;
 	}
