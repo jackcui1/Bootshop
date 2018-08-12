@@ -1,4 +1,4 @@
-package com.bootshop;
+package com.bootshop.config;
 
 import java.util.List;
 

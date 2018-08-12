@@ -6,12 +6,13 @@ What's inside
 
 This project is based on the Spring Boot project and uses these packages :
 
-Maven
+
 Spring Core
 Spring Data (Hibernate & MySQL)
 Spring MVC (Tomcat)
 Thymleaf
 BootStrap
+Maven
 
 Database configuration
 
@@ -19,7 +20,7 @@ Create a MySQL database with the name springbootdband add the credentials to /re
 The default ones are :
 spring.datasource.url=jdbc:mysql://localhost/minibookstore
 spring.datasource.username=root
-spring.datasource.password=passtest123
+spring.datasource.password=
 
 
 Usage
