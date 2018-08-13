@@ -3,11 +3,9 @@ package com.bootshop.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author Guowei Cui
@@ -15,14 +13,16 @@ import java.io.Serializable;
  */
 @Entity
 @Data
+@Table(name = "secondcategory")
 public class SubCategory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     private String description;
+
 }

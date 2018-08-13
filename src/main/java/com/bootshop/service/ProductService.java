@@ -14,5 +14,7 @@ public interface ProductService {
 	void editProduct(Product product);
 	Page<Product> getProductList(Pageable pageable);
 	List<Product> getProductList();
+
+	List<Product> findAllBySubCatetoryId(Integer id);
 	
 }

@@ -4,6 +4,8 @@ package com.bootshop.controller;
 import java.util.List;
 
 
+import com.bootshop.model.Category;
+import com.bootshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +27,9 @@ public class HomeController {
 	
 	@Autowired 
 	private ProductService productService;
+
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Autowired
 	private StorageFileService storageService;
@@ -43,6 +48,8 @@ public class HomeController {
 							"getFile", product.getImagename()).build().toString();
 			product.setAbsolutImagename(getFilename);
 		}
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
 		model.addAttribute("products", products);
 		return "index";
 	}

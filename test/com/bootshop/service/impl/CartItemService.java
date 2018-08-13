@@ -30,7 +30,8 @@ public class CartItemService {
 		cartItem.setTotalPrice(productService.getProductById(7)
 				.getPrice());
 		cartItem.setQuantity(1);
-		
+
+
 		logger.info("id is {}" );
 
 	}

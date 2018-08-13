@@ -3,7 +3,9 @@ package com.bootshop.service.impl;
 import com.bootshop.model.Category;
 import com.bootshop.model.SubCategory;
 import com.bootshop.repository.CategoryRepository;
+import com.bootshop.repository.SubCategoryRepository;
 import com.bootshop.service.CategoryService;
+import com.bootshop.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +19,13 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CategoryServiceImpl implements CategoryService {
+public class SubCategoryServiceImpl implements SubCategoryService {
 
     @Autowired
-    private CategoryRepository repository;
+    private SubCategoryRepository repository;
 
     @Override
-    public List<Category> findAll() {
-        return repository.findAll();
+    public List<SubCategory> findAllByCategoryId(Integer id) {
+        return repository.findAllByCategoryId(id);
     }
-
-//    @Override
-//    public List<SubCategory> findAllSubCategoriesById(Integer id) {
-//        return repository.findAllSubCategoriesById(id);
-//    }
-//
-//    @Override
-//    public List<SubCategory> findAllBySubCategoriesIs(Integer id) {
-//        return repository.findAllBySubCategoriesIs(id);
-//    }
 }

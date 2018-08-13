@@ -42,8 +42,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProductList() {
 		return productRepository.findAll();
 	}
-	
-	
+
+	@Override
+	public List<Product> findAllBySubCatetoryId(Integer id) {
+		return productRepository.findAllBySubCatetoryId(id);
+	}
+
 
 	public Page<Product> getProductList(Pageable pageable) {
 		return productRepository.findAll(pageable);
