@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author Guowei Cui
@@ -23,6 +24,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article findById(Integer id) {
         return repository.findOne(id);
+    }
+
+    @Override
+    public List<Article> findByType(int type) {
+        return repository.findAllByType(type);
     }
 
     @Override

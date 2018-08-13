@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * this is  Entity of article  for publishing
+ * this is  Entity of article  and carousel for publishing
  * @author Guowei Cui
  * @date 8/12/2018 11:27 PM
  */
@@ -33,10 +33,12 @@ public class Article implements Serializable{
     @NotEmpty(message = "*Please provide title")
     private String title;
 
+    @Column(name = "desc", nullable = true)
     private String desc;
 
     @Column(name = "body", columnDefinition = "TEXT")
     private String body;
+
 
     private int type;
 
@@ -51,5 +53,6 @@ public class Article implements Serializable{
     @Column(name = "update_at", nullable = true, updatable = false)
     private Date updateAt;
 
-
+    @Transient
+    private String absolutImagename;
 }
