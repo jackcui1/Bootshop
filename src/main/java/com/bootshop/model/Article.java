@@ -8,7 +8,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * this is  Entity of article  for publishing
@@ -19,7 +20,9 @@ import java.sql.Date;
 @Entity
 @Data
 @Table(name = "article")
-public class Article {
+public class Article implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +33,16 @@ public class Article {
     @NotEmpty(message = "*Please provide title")
     private String title;
 
+    private String desc;
+
     @Column(name = "body", columnDefinition = "TEXT")
     private String body;
+
+    private int type;
+
+    private String url;
+
+    private String imagename;
 
 
     @Column(name = "create_at", nullable = false, updatable = false)
@@ -40,9 +51,5 @@ public class Article {
     @Column(name = "update_at", nullable = true, updatable = false)
     private Date updateAt;
 
-    @ManyToOne
-    @JoinColumn(name = "userid", referencedColumnName = "userid", nullable = false)
-    @NotNull
-    private User user;
 
 }

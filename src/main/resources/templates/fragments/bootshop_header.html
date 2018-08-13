@@ -30,18 +30,14 @@
 		<input id="srchFld" class="srchTxt" type="text" />
 		  <select class="srchTxt">
 			<option>All</option>
-			<option>CLOTHES </option>
-			<option>FOOD AND BEVERAGES </option>
-			<option>HEALTH | BEAUTY </option>
-			<option>SPORTS | LEISURE </option>
-			<option>BOOKS | ENTERTAINMENTS </option>
+			<option th:each="category :${categories}" th:text="${category.name}">CLOTHES </option>
 		  </select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
 		</form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="/product/list">Product List</a></li>
-	 <li class=""><a href="normal.html">Delivery</a></li>
-	 <li class=""><a href="contact.html">Contact</a></li>
+	 <li class=""><a th:href="@{/articles/1}" th:text="${'Delivery'}">Delivery</a></li>
+	 <li class=""><a th:href="@{/articles/2}" th:text="${'Contact'}" >Contact</a></li>
     </ul>
   </div>
 </div>

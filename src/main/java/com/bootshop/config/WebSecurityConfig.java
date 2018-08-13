@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //HomePage and other page guest can access.
                 .antMatchers("/").permitAll()
                 .antMatchers("/rest/**").permitAll()
+                .antMatchers("/articles/**").permitAll()
                 .antMatchers("/static/**", "/js/**", "/css/**", "/bootshop/**").permitAll()
                 .antMatchers("/product/**").permitAll()
                 .antMatchers("/register/**").permitAll()
