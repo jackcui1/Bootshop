@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 //HomePage and other page guest can access.
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/rest/**").permitAll()
                 .antMatchers("/articles/**").permitAll()
                 .antMatchers("/imgfiles/**").permitAll()

@@ -30,12 +30,13 @@ public class ArticleController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/type/{id}")
     public String getById(@PathVariable("id") Integer id, Model model) {
 
-        Article article = service.findById(id);
+        List<Article> articles = service.findByType(id);
+        Article article = articles.get(0);
 
-        if (article != null) {
+        if (article != null ) {
             model.addAttribute("article",article);
         } else {
             model.addAttribute("msg","Can not find any article by Id: "+ id);

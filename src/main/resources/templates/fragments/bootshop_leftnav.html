@@ -5,9 +5,9 @@
 <!-- Sidebar ================================================== -->
 	<div  th:fragment="bootshop_leftnav">
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			<li th:class="${category.id==1} ? 'subMenu'+' open' : 'subMenu'" th:each="category :${categories}"  >
+			<li th:class="${iterStat.first} ? 'subMenu'+' open' : 'subMenu'" th:each="category,iterStat :${categories}"  >
 				<a th:href="${category.id}" th:text="${category.name}"> </a>
-				<ul th:class="${category.id==1} ? '':'nondisplaySubMenu'">
+				<ul th:class="${iterStat.first} ? '':'nondisplaySubMenu'">
 					<li th:each="subCategory : ${category.subCategories}">
 						<a class="active" th:href="@{'/product/list/subcategory/'+${subCategory.id}}" th:text="${subCategory.name}">
 							<!-- <i class="icon-chevron-right">{{secondCategory.name}}</i> -->
