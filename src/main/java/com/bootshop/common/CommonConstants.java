@@ -12,4 +12,8 @@ public class CommonConstants {
     public static final int ARTICLE_TYPE_DELIVERY = 2;
     public static final int ARTICLE_TYPE_CONTACT = 3;
 
+    //Cookie name
+    public static final String BOOTSHOP_COOKIE_NAME = "BootShopCookie";
+    public static final int BOOTSHOP_COOKIE_MAXAGE = 24 * 60 * 60;
+
 }
