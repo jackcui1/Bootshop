@@ -18,6 +18,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Autowired
+    private SimpleAuthenticationSuccessHandler successHandler;
+
+    @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username,password,enabled from user where username=?")
@@ -57,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest().denyAll()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().loginPage("/login").successHandler(successHandler)
                 .and()
                 .rememberMe().tokenValiditySeconds(2419200)
                 .and()
