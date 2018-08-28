@@ -3,8 +3,10 @@ package com.bootshop.controller;
 import java.util.List;
 
 import com.bootshop.model.Category;
-import com.bootshop.service.CategoryService;
+import com.bootshop.model.User;
+import com.bootshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import com.bootshop.model.Product;
-import com.bootshop.service.ProductService;
-import com.bootshop.service.StorageFileService;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/product")
@@ -28,9 +30,15 @@ public class ProductController {
 	
 	@Autowired
 	private StorageFileService storageService;
+
+	@Autowired
+	private ItemViewRedisService itemViewRedisService;
+
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/view/{id}")
-	public String viewProduct(@PathVariable("id") int id, Model model) {
+	public String viewProduct(@PathVariable("id") int id, Model model, Authentication authentication) {
 		Product product = productService.getProductById(id);
 		String getFilename=MvcUriComponentsBuilder
 				.fromMethodName(ImagesController.class,
@@ -38,6 +46,10 @@ public class ProductController {
 		product.setAbsolutImagename(getFilename);
 		
 		model.addAttribute("product", product);
+		String username = authentication.getName();
+		User user = userService.findByUsername(username);
+
+		itemViewRedisService.add(user, product);
 		
 		return "productDetail";
 	}

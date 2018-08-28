@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Guowei Cui
@@ -35,20 +36,26 @@ public class UserRedisServiceImpl implements UserRedisService {
         hashOperations = redisTemplate.opsForHash();
     }
 
+
+    /**
+     * Record loged in user.
+     * data structure -- map
+     * key -- loginMap
+     * value -- k:token v:user
+     */
+
     @Override
     public void add(User user) {
-        hashOperations.put(CommonConstants.KEY_LOGIN_USER, user.getUserid(), user);
+        long timestamp = System.currentTimeMillis() / 1000;
+        //redisTemplate.opsForHash().put(CommonConstants.KEY_LOGIN_USER, user.getUserid(), user);
+        redisTemplate.boundZSetOps(CommonConstants.KEY_LOGIN_USER).add(user.getUserid(), timestamp);
+
     }
 
     @Override
-    public List<User> findAll(List<User> users) {
-        List<Integer> ids = new ArrayList<>();
-        users.forEach(
-                (user) -> {
-                    ids.add(user.getUserid());
-                }
-        );
-        return hashOperations.multiGet(CommonConstants.KEY_LOGIN_USER,ids);
+    public Map<Integer, User> findAll() {
+
+        return hashOperations.entries(CommonConstants.KEY_LOGIN_USER);
     }
 
     @Override

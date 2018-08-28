@@ -2,6 +2,7 @@ package com.bootshop.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -15,6 +16,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import java.lang.reflect.Method;
@@ -37,45 +40,28 @@ public class RedisConfig extends CachingConfigurerSupport {
     public RedisTemplate<String, Object> redisTemplate() {
         final RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
         template.setConnectionFactory(jedisConnectionFactory());
-        template.setValueSerializer(new GenericToStringSerializer<Object>(Object.class));
+        setSerializer(template);
+        template.setHashKeySerializer(new GenericToStringSerializer<Object>(Object.class));
+        template.afterPropertiesSet();
         return template;
     }
-    /*@Bean
-    public KeyGenerator keyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object target, Method method, Object... params) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(target.getClass().getName());
-                sb.append(method.getName());
-                for (Object obj : params) {
-                    sb.append(obj.toString());
-                }
-                return sb.toString();
-            }
-        };
-    }
 
-    @SuppressWarnings("rawtypes")
-    @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-        //Set cache expiration time
-        //rcm.setDefaultExpiration(60);//unit:s
-        return rcm;
-    }
-
-    @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+    private void setSerializer(RedisTemplate<String, Object> template) {
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(
+                Object.class);
         ObjectMapper om = new ObjectMapper();
+        om.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setKeySerializer(template.getStringSerializer());
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.afterPropertiesSet();
-        return template;
-    }*/
-
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        //if use String as data structure, you can use following configuration to serialize value.
+//        RedisSerializer<String> stringSerializer = new StringRedisSerializer();
+//        template.setKeySerializer(stringSerializer);
+//        template.setValueSerializer(stringSerializer);
+//        template.setHashKeySerializer(stringSerializer);
+//        template.setHashValueSerializer(stringSerializer);
+    }
 }

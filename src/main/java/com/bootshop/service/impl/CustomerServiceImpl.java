@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Role role=new Role();
 		role.setRole("ROLE_USER");
 		customer.getUser().setRole(role);
-		userService.addUser(customer.getUser());
+		userService.save(customer.getUser());
 		shippingAddressService.addAddress(customer.getShippingAddress());
 		customer.setCart(cart);
 		cartService.addCart(customer.getCart());
@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public void addCustomer(Customer customer) {
 		
 		customer.getUser().getRole().setRole("ROLE_USER");
-		userService.addUser(customer.getUser());
+		userService.save(customer.getUser());
 		shippingAddressService.addAddress(customer.getShippingAddress());
 		cartService.addCart(customer.getCart());
 		customerRepository.save(customer);

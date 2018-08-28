@@ -1,6 +1,8 @@
 package com.bootshop.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Data
 @Table(name = "user")
 public class User implements Serializable{
 
@@ -33,62 +37,22 @@ public class User implements Serializable{
 	private String password;
 
 	private int enabled;
-	
+
+	@Column(name = "create_at", nullable = false, updatable = false)
+	private Date createAt;
+
+	@Column(name = "loggedin_at", nullable = true)
+	private Date loggedInAt;
+
+	private String loginIp;
+
 	@OneToOne
 	@JoinColumn(name = "roleid")
 	private Role role;
 	
+
 	
-	public User(){
-		
-	}
-	
-	public int getUserid() {
-		return userid;
-	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", username=" + username 
-				+ ", password=" + password + ", enabled=" + enabled
-				+  ", role=" + role + "]";
-	}
 	
 
 }

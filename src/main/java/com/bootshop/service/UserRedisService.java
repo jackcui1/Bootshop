@@ -3,6 +3,7 @@ package com.bootshop.service;
 import com.bootshop.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Guowei Cui
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface UserRedisService {
     void add(User user);
-    List<User> findAll(List<User> users);
+    Map<Integer, User> findAll();
     User find(int id);
 }

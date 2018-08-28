@@ -51,12 +51,18 @@ public class HomeController {
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
 		List<Article> articles = articleService.findByType(CommonConstants.ARTICLE_TYPE_CAROUSEL);
-		for (Article article: articles) {
+		articles.forEach((article) -> {
 			String getFilename=MvcUriComponentsBuilder
 					.fromMethodName(ImagesController.class,
 							"getFile", article.getImagename()).build().toString();
 			article.setAbsolutImagename(getFilename);
-		}
+		});
+		/*for (Article article: articles) {
+			String getFilename=MvcUriComponentsBuilder
+					.fromMethodName(ImagesController.class,
+							"getFile", article.getImagename()).build().toString();
+			article.setAbsolutImagename(getFilename);
+		}*/
 		model.addAttribute("articles",articles);
 		model.addAttribute("products", products);
 		return "index";

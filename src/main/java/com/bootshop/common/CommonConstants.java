@@ -17,23 +17,11 @@ public class CommonConstants {
     public static final int BOOTSHOP_COOKIE_MAXAGE = 24 * 60 * 60;
 
 
-    /**
-     * Record loged in user.
-     * data structure -- map
-     * key -- loginMap
-     * value -- k:token v:user
-     */
     //Redis key for loged in user
     public static final String KEY_LOGIN_USER = "loginMap";
     //Redis key for
     public static final String KEY_RECENT_USER = "recentSet";
 
-    /**
-     * 存储用户最近浏览的项目
-     * 数据结构 -- zset
-     * key -- viewZset:token
-     * value -- v:item score:timestamp
-     */
     //Redis key for customer view history;
     public static final String KEY_USER_VIEW_PREFIX = "viewZset:";
 

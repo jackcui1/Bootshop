@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,7 +26,6 @@ public class Product implements Serializable {
     @NotEmpty(message = "Product Name must not be Null.")
     private String productname;
 
-    private String category;
     private String brand;
     private String model;
     private String sku;
@@ -47,17 +47,16 @@ public class Product implements Serializable {
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "firstcategoryid")
     private Category catetory;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "secondcategoryid")
 	private SubCategory subCatetory;
 
 
     @Transient
     private String absolutImagename;
-
 
 }
