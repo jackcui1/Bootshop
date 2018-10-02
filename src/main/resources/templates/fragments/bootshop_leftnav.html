@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+
 <!-- Sidebar ================================================== -->
 	<div  th:fragment="bootshop_leftnav">
-		
+
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open" ng-repeat="firstCategory in categories"  ><a href="#" ng-click="getProductsByFirstCategoryId(firstCategory.id)"> {{firstCategory.name}}</a>
 				<ul>
@@ -13,8 +15,19 @@
 						</a>
 					</li>
 				</ul>
+			<li th:class="${iterStat.first} ? 'subMenu'+' open' : 'subMenu'" th:each="category,iterStat :${categories}"  >
+				<a th:href="${category.id}" th:text="${category.name}"> </a>
+				<ul th:class="${iterStat.first} ? '':'nondisplaySubMenu'">
+					<li th:each="subCategory : ${category.subCategories}">
+						<a class="active" th:href="@{'/product/list/subcategory/'+${subCategory.id}}" th:text="${subCategory.name}">
+							<!-- <i class="icon-chevron-right">{{secondCategory.name}}</i> -->
+
+						</a>
+					</li>
+				</ul>
 			</li>
-		</ul> 
+		</ul>
+		</ul>
 		<br/>
 		 
 		

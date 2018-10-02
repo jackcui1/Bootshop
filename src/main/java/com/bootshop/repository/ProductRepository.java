@@ -13,6 +13,9 @@ import com.bootshop.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 	Page<Product> findAll(Pageable pageable);
 	List<Product> findAll();
+
+
+	List<Product> findAllBySubCatetoryId(Integer id);
 	
 	
 	@Query(value="select * from product p where p.firstcategoryid=?1",nativeQuery=true)

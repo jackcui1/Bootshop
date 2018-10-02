@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Data
 public class Customer implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -56,62 +58,6 @@ public class Customer implements Serializable{
 		this.cart = new Cart();
 		this.shippingAddress=new ShippingAddress();
 		this.user=new User();
-	}
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public int getCustomerid() {
-		return customerid;
-	}
-
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-	}
-
-	public String getCustomername() {
-		return customername;
-	}
-
-	public void setCustomername(String customername) {
-		this.customername = customername;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public ShippingAddress getShippingAddress() {
-		return shippingAddress;
-	}
-
-	public void setShippingAddress(ShippingAddress shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
-
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
 	}
 
 	@Override

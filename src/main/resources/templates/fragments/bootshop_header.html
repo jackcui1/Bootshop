@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div id="header" th:fragment="bootshop_header" >
-<div class="container" >
+<div id="header" th:fragment="bootshop_header">
+<div class="container">
 <div id="welcomeLine" class="row">
 	<div class="span6">Welcome!&nbsp;&nbsp;<strong sec:authorize="isAuthenticated()" sec:authentication="name"> User</strong></div>
 	<div class="span6">
 	<div class="pull-right" >
 		
-		<span class="btn btn-mini" id="cart-item-grandtotal">C${{cartGrandTotal}}</span>
-		<a href="/cart/"><span class="btn btn-mini btn-primary" id="cart-item-count"><i class="icon-shopping-cart icon-white"></i> {{cartItemCount}} Itemes in your cart </span> </a>
+		<span class="btn btn-mini" id="cart-item-grandtotal">C$0.00</span>
+		<a href="/cart/"><span class="btn btn-mini btn-primary" id="cart-item-count"><i class="icon-shopping-cart icon-white"></i> [ 0 ] Itemes in your cart </span> </a>
 		<a href="/login" sec:authorize="isAnonymous()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Login</span> </a> 
 		<a th:href="@{/logout}" sec:authorize="isAuthenticated()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Logout</span> </a>
 		<a th:href="@{/admin/}" sec:authorize-url="/admin/"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Admin</span> </a>
@@ -30,18 +30,14 @@
 		<input id="srchFld" class="srchTxt" type="text" />
 		  <select class="srchTxt">
 			<option>All</option>
-			<option>CLOTHES </option>
-			<option>FOOD AND BEVERAGES </option>
-			<option>HEALTH | BEAUTY </option>
-			<option>SPORTS | LEISURE </option>
-			<option>BOOKS | ENTERTAINMENTS </option>
+			<option th:each="category :${categories}" th:text="${category.name}">CLOTHES </option>
 		  </select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
 		</form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="/product/list">Product List</a></li>
-	 <li class=""><a href="normal.html">Delivery</a></li>
-	 <li class=""><a href="contact.html">Contact</a></li>
+	 <li class=""><a th:href="@{/articles/type/2}" th:text="${'Delivery'}">Delivery</a></li>
+	 <li class=""><a th:href="@{/articles/type/3}" th:text="${'Contact'}" >Contact</a></li>
     </ul>
   </div>
 </div>

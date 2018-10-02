@@ -3,176 +3,60 @@ package com.bootshop.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="product")
-public class Product implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+@Data
+@Table(name = "product")
+public class Product implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int productid;
-	
-	@NotEmpty(message="Product Name must not be Null.")
-	private String productname;
-	
-	//private String category;
-	@ManyToOne
-	@JoinColumn(name="firstcategoryid")
-	private FirstCategory firstCategory;
-	
-	@ManyToOne
-	@JoinColumn(name="secondcategoryid")
-	private SecondCategory secondCategory;
-	
-	private String brand;
-	private String model;
-	private String sku;
-	
-	@Min(value=0,message="Product price must not be  less then zero.")
-	private double price;
-	
-	private String dimensions;
-	
-	@Column(name="unitinstock")
-	private int unitInStock;
-	
-	private int availability;
-	private String description;
-	
-	private String imagename;
-	
-	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private List<CartItem> cartItemList;
-	
-	@Transient
-	private String absolutImagename;
-	
-	
-	public int getProductid() {
-		return productid;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-	
-	public String getSku() {
-		return sku;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productid;
 
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
+    @NotEmpty(message = "Product Name must not be Null.")
+    private String productname;
 
-	public String getProductname() {
-		return productname;
-	}
+    private String brand;
+    private String model;
+    private String sku;
 
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
+    @Min(value = 0, message = "Product price must not be  less then zero.")
+    private double price;
 
-	
-	public String getBrand() {
-		return brand;
-	}
+    private String dimensions;
 
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
+    @Column(name = "unitinstock")
+    private int unitInStock;
 
-	public String getModel() {
-		return model;
-	}
+    private int availability;
+    private String description;
 
-	public void setModel(String model) {
-		this.model = model;
-	}
+    private String imagename;
 
-	public double getPrice() {
-		return price;
-	}
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<CartItem> cartItemList;
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "firstcategoryid")
+    private Category catetory;
 
-	public String getDimensions() {
-		return dimensions;
-	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "secondcategoryid")
+	private SubCategory subCatetory;
 
-	public void setDimensions(String dimensions) {
-		this.dimensions = dimensions;
-	}
 
-	public int getUnitInStock() {
-		return unitInStock;
-	}
-
-	public void setUnitInStock(int unitInStock) {
-		this.unitInStock = unitInStock;
-	}
-
-	public List<CartItem> getCartItemList() {
-		return cartItemList;
-	}
-
-	public void setCartItemList(List<CartItem> cartItemList) {
-		this.cartItemList = cartItemList;
-	}
-
-	public int getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(int availability) {
-		this.availability = availability;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImagename() {
-		return imagename;
-	}
-
-	public void setImagename(String imagename) {
-		this.imagename = imagename;
-	}
-
-	public String getAbsolutImagename() {
-		return absolutImagename;
-	}
-
-	public void setAbsolutImagename(String absolutImagename) {
-		this.absolutImagename = absolutImagename;
-	}
-	
-	
+    @Transient
+    private String absolutImagename;
 
 }

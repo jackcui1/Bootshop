@@ -49,18 +49,11 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 		<transition on="submit" to="saveOrder" />
 		<transition on="cancel" to="cancel" />
 	</view-state>
-	
-	
+
 	<action-state id="saveOrder">
 		<evaluate expression="customerOrderServiceImpl.addCustomerOrder(order)" />
-		<transition to="payment" />
+		<transition to="thankYou" />
 	</action-state>
-	
-		<!-- Payment -->
-	<subflow-state id="payment" subflow="checkout/payment">
-		<input name="order" value="order" />
-		<transition on="paymentTaken" to="thankYou" />
-	</subflow-state>
 
 	<view-state id="thankYou">
 		<transition to="endState" />

@@ -63,7 +63,7 @@ public class CustomerController {
 		User user = customer.getUser();
 		user.setEnabled(1);
 		user.setRole(new Role("ROLE_USER",user.getUsername()));
-		userService.addUser(user);
+		userService.save(user);
 		logger.info("shippingAddress==>"+customer.getShippingAddress());
 
 		shippingAddressService.addAddress(customer.getShippingAddress());

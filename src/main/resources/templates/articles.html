@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body>
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					 th:include="fragments/bootshop_leftnav:: bootshop_leftnav">
+				</div>
+
+				<div class="span9" id="mainCol">
+					<ul class="breadcrumb">
+						<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+						<li class="active" th:text="${article.title}">Page Title</li>
+					</ul>
+
+
+					<h3 th:text="${article.title}"></h3>
+					<h4 th:text="${article.desc}"></h4>
+					<hr class="soft"/>
+
+					<p th:text="${article.body}">
+
+					</p>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

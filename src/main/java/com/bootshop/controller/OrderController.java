@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,95 +32,72 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class OrderController {
 
-	// Inject cookie name via application.properties
-	@Value("${Bootshop_Cart_Cookie_Name}")
-	private String cookieName;
+    // Inject cookie name via application.properties
+    @Value("${Bootshop_Cart_Cookie_Name}")
+    private String cookieName;
 
-	@Autowired
-	CartService cartService;
+    @Autowired
+    CartService cartService;
 
-	@Autowired
-	CustomerService customerService;
+    @Autowired
+    CustomerService customerService;
 
-	@Autowired
-	CartItemService cartItemService;
+    @Autowired
+    CartItemService cartItemService;
 
-	@Autowired
-	CustomerOrderService customerOrderService;
+    @Autowired
+    CustomerOrderService customerOrderService;
 
-	private String getCurrentUsername() {
-		return SecurityContextHolder.getContext().getAuthentication().getName();
-	}
-	
-	@RequestMapping(value="/order/")
-	public String displayOrder(){
-		return "cart";
-	}
-	
-	/*@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
-	public String createOrder(@PathVariable String cartid,
-			HttpServletRequest request, HttpServletResponse response)
-			throws JsonParseException, JsonMappingException,
-			UnsupportedEncodingException, IOException {
-		Cart cart = null;
-		
-		if (getCurrentUsername().equals("anonymousUser")) {
-			ObjectMapper objectMapper = new ObjectMapper();
-			objectMapper.setSerializationInclusion(Include.NON_NULL);
-			Cookie[] cookies = request.getCookies();
-			// 1.read cart from cookie.
-			if (null != cookies && cookies.length > 0) {
-				for (Cookie cookie : cookies) {
-					if (cookieName.equals(cookie.getName())
-							&& cookie.getValue() != "") {
-						cart = objectMapper.readValue(
-								URLDecoder.decode(cookie.getValue(), "UTF-8"),
-								Cart.class);
-						break;
-					}
-				}
-			}
-			// 2. Create cart if cart is null.
-			if (cart.getCartid().equals(cartid)) {
-				if (cart.getCartItems().size() != 0) {
-					for (CartItem cartItem : cart.getCartItems()) {
-						cartItem.setCart(cart);
-					}
-				} else {
-					return "redirect:/cart";
-				}
-				cartService.addCart(cart);
-				cartItemService.addOrUpdateCartItems(cart.getCartItems());
-				return "redirect:/checkout?cartid=" + cartid;
-			} else {
-				return "redirect:/cart";
-			}
-		} else {
+    private String getCurrentUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
 
-			
-			 * CustomerOrder customerOrder = new CustomerOrder(); Cart cart =
+    @RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
+    public String createOrder(@PathVariable String cartid,
+                              HttpServletRequest request, HttpServletResponse response)
+            throws JsonParseException, JsonMappingException,
+            UnsupportedEncodingException, IOException {
+        Cart cart = null;
+        if (getCurrentUsername().equals("anonymousUser")) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setSerializationInclusion(Include.NON_NULL);
+            Cookie[] cookies = request.getCookies();
+            // 1.read cart from cookie.
+            if (null != cookies && cookies.length > 0) {
+                for (Cookie cookie : cookies) {
+                    if (cookieName.equals(cookie.getName())
+                            && cookie.getValue() != "") {
+                        cart = objectMapper.readValue(
+                                URLDecoder.decode(cookie.getValue(), "UTF-8"),
+                                Cart.class);
+                        break;
+                    }
+                }
+            }
+            // 2. Create cart if cart is null.
+            if (cart.getCartid().equals(cartid)) {
+                for (CartItem cartItem : cart.getCartItems()) {
+                    cartItem.setCart(cart);
+                }
+
+                cartService.addCart(cart);
+                cartItemService.addOrUpdateCartItems(cart.getCartItems());
+                return "redirect:/checkout?cartid=" + cartid;
+            } else {
+                return "invalidCartWarning";
+            }
+        } else {
+
+			/*
+             * CustomerOrder customerOrder = new CustomerOrder(); Cart cart =
 			 * cartService.getCartById(cartid); customerOrder.setCart(cart);
 			 * Customer customer =
 			 * customerService.getCustomerBycustomername(getCurrentUsername());
 			 * customerOrder.setCustomer(customer);
 			 * customerOrder.setShippingAddress(customer.getShippingAddress());
 			 * customerOrderService.addCustomerOrder(customerOrder);
-			 
-			return "redirect:/checkout?cartid=" + cartid;
-		}
-	}*/
-	
-	@RequestMapping(value = "/order/{cartid}", method = RequestMethod.GET)
-	public String createOrder(@PathVariable String cartid,Model model) {
-		if (getCurrentUsername().equals("anonymousUser")) {
-			return "redirect:/login";
-		}
-		CustomerOrder order=new CustomerOrder();
-		Customer customer=customerService.getCustomerBycustomername(getCurrentUsername());
-		order.setCustomer(customer);
-		Cart cart=cartService.getCartById(cartid);
-		order.setCart(cart);
-		model.addAttribute("customerOrder",order);
-		return "checkout";
-	}
+			 */
+            return "redirect:/checkout?cartid=" + cartid;
+        }
+    }
 }

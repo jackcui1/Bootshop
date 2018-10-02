@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- This template was download from: https://startbootstrap.com/template-overviews/shop-homepage/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header">
+</head>
+<body>
+	<div th:include="fragments/menu :: menu"></div>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<div th:include="fragments/left_nav::left_nav" class="col-lg-3">
+			</div>
+
+			<div class="col-lg-9">
+			<div class="row" id="rowList">
+				<!-- <div th:if="${not #lists.isEmpty(books)}"> -->
+						<div th:each="book : ${books}" class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100">
+								<a th:href="${ '/book/view/' + book.bookid}"><img class="card-img-top"
+									src="http://placehold.it/700x400" alt="" /></a>
+								<div class="card-body">
+									<h5 class="card-title">
+										<a th:href="${ '/book/view/' + book.bookid}" th:text="${book.bookname}"></a>
+									</h5>
+									<h5 th:text="${'C$'+ book.price}">C$</h5>
+									<p class="card-text" th:text="${#strings.abbreviate(book.description,50)}" ></p>
+								</div>
+						</div>
+					<!-- </div> -->
+			</div>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.col-lg-9 -->
+
+	</div>
+	<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<!-- footer -->
+	<div th:include="fragments/footer :: footer"></div>
+
+</body>
+
+</html>
