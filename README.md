@@ -1,6 +1,4 @@
-Mini Book Online Store
-
-Mini Book Online Store is my practicing project.
+Bootshop is Online Store
 
 What's inside
 
