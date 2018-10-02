@@ -1,4 +1,4 @@
-package com.bootshop.service.impl;
+package com.bootshop.service;
 
 import com.bootshop.model.Article;
 import com.bootshop.repository.ArticleRepository;

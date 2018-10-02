@@ -47,26 +47,4 @@ public class UserRedisServiceTest {
         System.out.println(maps.get(8).toString());
     }
 
-    @Test
-    public void addItem() {
-
-        User user = userService.findByUsername("test");
-        Product p1 = productService.getProductById(3);
-        Product p2 = productService.getProductById(4);
-        Product p3 = productService.getProductById(5);
-        p1.getCatetory().setSubCategories(null);
-        p2.getCatetory().setSubCategories(null);
-        p3.getCatetory().setSubCategories(null);
-        itemViewRedisService.add(user, p1);
-        itemViewRedisService.add(user, p2);
-        itemViewRedisService.add(user, p3);
-        itemViewRedisService.add(user, p1);
-        //itemViewRedisService.add(user, p2);
-        System.out.println("count...." + itemViewRedisService.count(user));
-        Set<Product> ps = itemViewRedisService.findAll(user);
-        ps.forEach(p -> {
-            System.out.println(p);
-        });
-       // System.out.println(user.toString());
-    }
 }
