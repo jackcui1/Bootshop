@@ -5,6 +5,7 @@ import com.bootshop.model.SubCategory;
 import com.bootshop.service.CategoryService;
 import com.bootshop.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.List;
  * @date 8/12/2018 7:50 AM
  */
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/rest/categories")
 public class CategoryRestController {

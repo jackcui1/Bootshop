@@ -4,6 +4,7 @@ import com.bootshop.model.Product;
 import com.bootshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 8/27/2018 9:50 AM
  */
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/rest/products")
 public class ProductRestController {
@@ -25,4 +27,5 @@ public class ProductRestController {
         Product product = productService.getProductById(id);
         return product;
     }
+
 }
