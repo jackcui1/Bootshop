@@ -49,11 +49,11 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "firstcategoryid")
-    private Category catetory;
+    private Category category;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "secondcategoryid")
-	private SubCategory subCatetory;
+	private SubCategory subCategory;
 
 
     @Transient

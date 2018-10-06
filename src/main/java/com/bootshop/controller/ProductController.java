@@ -74,7 +74,7 @@ public class ProductController {
 
 	@RequestMapping(value="/list/subcategory/{id}",method=RequestMethod.GET)
 	public String productBySubCategory(@PathVariable("id") Integer id, Model model) {
-		List<Product> products = productService.findAllBySubCatetoryId(id);
+		List<Product> products = productService.findAllBySubCategoryId(id);
 
 		for(Product product:products){
 			String getFilename=MvcUriComponentsBuilder

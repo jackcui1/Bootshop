@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	List<Product> findAll();
 
 
-	List<Product> findAllBySubCatetoryId(Integer id);
+	List<Product> findAllBySubCategoryId(Integer id);
 	
 	
 	@Query(value="select * from product p where p.firstcategoryid=?1",nativeQuery=true)

@@ -1,10 +1,9 @@
 package com.bootshop.controller.restapi;
 
 import com.bootshop.controller.ImagesController;
-import com.bootshop.model.Category;
 import com.bootshop.model.Product;
-import com.bootshop.service.CategoryService;
 import com.bootshop.service.ProductService;
+import com.bootshop.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,27 +27,20 @@ public class ProductRestController {
     @Autowired
     ProductService productService;
 
-    @Autowired
-    private CategoryService categoryService;
-
     @RequestMapping("/{id}")
     public Product getProductById(@PathVariable("id") int id , Model model ) {
         Product product = productService.getProductById(id);
+        product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
         return product;
     }
 
     @RequestMapping("")
-    public List<Product> getProductList( Model model ) {
+    public List<Product> getProductList(Model model ) {
         List<Product> products = productService.getProductList();
 
         for(Product product:products){
-            String getFilename= MvcUriComponentsBuilder
-                    .fromMethodName(ImagesController.class,
-                            "getFile", product.getImagename()).build().toString();
-            product.setAbsolutImagename(getFilename);
+            product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
         }
-        System.out.println(products.get(0).getAbsolutImagename());
-
         return products;
 
     }

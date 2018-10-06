@@ -15,6 +15,6 @@ public interface ProductService {
 	Page<Product> getProductList(Pageable pageable);
 	List<Product> getProductList();
 
-	List<Product> findAllBySubCatetoryId(Integer id);
+	List<Product> findAllBySubCategoryId(Integer id);
 	
 }

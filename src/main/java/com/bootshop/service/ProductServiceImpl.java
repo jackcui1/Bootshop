@@ -44,8 +44,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findAllBySubCatetoryId(Integer id) {
-		return productRepository.findAllBySubCatetoryId(id);
+	public List<Product> findAllBySubCategoryId(Integer id) {
+		return productRepository.findAllBySubCategoryId(id);
 	}
 
 

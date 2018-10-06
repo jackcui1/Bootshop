@@ -25,6 +25,16 @@
 						<form th:object="${product}" th:action="@{/admin/editproduct}"
 							method="Post" class="form-inline" enctype="multipart/form-data">
 							<fieldset>
+
+								<div class="control-group">
+									<label class="control-label" for="productId">Product
+										Id</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="input14"
+											   th:field="*{productid}" readonly="readonly" ></input>
+									</div>
+								</div>
+
 								<div class="control-group">
 									<label class="control-label" for="productname">Product
 										Name</label>
@@ -46,8 +56,8 @@
 								<div class="control-group">
 									<label class="control-label" for="productcategory">Category</label>
 									<div class="controls">
-										<input type="text" class="input-xlarge" id="input14"
-											th:field="*{category}"></input>
+										<!--<input type="text" class="input-xlarge" id="input14"
+											th:field="*{category}"></input>-->
 									</div>
 								</div>
 
@@ -119,12 +129,15 @@
 										Picture</label>
 									<div class="controls">
 										<input class="input-file" id="fileInput" name="imageFile"
-											type="file" accept="image/jpeg,image/png,image/gif" />
+											type="file" accept="image/jpeg,image/png,image/gif" /><br/>
+										<img th:src="${product.absolutImagename}" />
+									<!--	<p th:field="${imagename}></p>-->
 									</div>
+
 								</div>
 
 								<div class="form-actions">
-									<button type="submit" value="submit" class="btn btn-primary">Add
+									<button type="submit" value="submit" class="btn btn-primary">Edit
 										Product</button>
 									<button class="btn" th:href="@{/admin/productmanagement/}">Cancel</button>
 								</div>

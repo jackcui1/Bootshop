@@ -1,10 +1,12 @@
 package com.bootshop.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +26,7 @@ public class StorageFileService {
 
     public void store(MultipartFile file, String destinationFileName) {
         try {
-            System.out.println(destinationFileName + "  " + file.getContentType());
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(destinationFileName));
-            System.out.println(rootLocation.toString());
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(destinationFileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             throw new RuntimeException("Coping file fail.");
         }

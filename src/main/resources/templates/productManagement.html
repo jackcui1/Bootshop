@@ -37,7 +37,7 @@
 								<tr th:each="product : ${products}">
 									<td th:text="${product.productid}"></td>
 									<td th:text="${product.productname}"></td>
-									<td th:text="${product.category}"></td>
+									<td th:text="${product.category.name}"></td>
 									<td th:text="${product.brand}"></td>
 									<td th:text="${product.unitInStock}"></td>
 									<td th:text="${product.price}"></td>

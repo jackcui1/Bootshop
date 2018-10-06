@@ -3,6 +3,9 @@ package com.bootshop.controller.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bootshop.model.Category;
+import com.bootshop.service.CategoryService;
+import com.bootshop.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +29,9 @@ public class ProductAdminController {
 	
 	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Autowired
 	private StorageFileService storageService;
@@ -42,6 +48,9 @@ public class ProductAdminController {
 	public String showEditProductForm(@PathVariable("productid") int productid,
 			Model model) {
 		Product product = productService.getProductById(productid);
+		product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
 		model.addAttribute("product", product);
 		return "editproduct";
 	}
@@ -55,7 +64,18 @@ public class ProductAdminController {
 			product.setImagename(product.getProductid()+product.getProductname()+product.getSku()+"."+extensionName);
 			
 			storageService.store(imageFile,product.getImagename());
+		} else {
+			String imageName = productService.getProductById(product.getProductid()).getImagename();
+			product.setImagename(imageName);
 		}
+		if (product.getCategory() == null) {
+			product.setCategory(productService.getProductById(product.getProductid()).getCategory());
+		}
+
+		if (product.getSubCategory() == null) {
+			product.setSubCategory(productService.getProductById(product.getProductid()).getSubCategory());
+		}
+
 		productService.editProduct(product);
 		return "redirect:/product/view/" + product.getProductid();
 	}
