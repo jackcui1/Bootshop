@@ -1,15 +1,13 @@
 package com.bootshop.controller.restapi;
 
 import com.bootshop.controller.ImagesController;
+import com.bootshop.model.Category;
 import com.bootshop.model.Product;
 import com.bootshop.service.ProductService;
 import com.bootshop.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.List;
@@ -28,20 +26,30 @@ public class ProductRestController {
     ProductService productService;
 
     @RequestMapping("/{id}")
-    public Product getProductById(@PathVariable("id") int id , Model model ) {
+    public Product getProductById(@PathVariable("id") int id, Model model) {
         Product product = productService.getProductById(id);
         product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
         return product;
     }
 
     @RequestMapping("")
-    public List<Product> getProductList(Model model ) {
+    public List<Product> getProductList(Model model) {
         List<Product> products = productService.getProductList();
 
-        for(Product product:products){
+        for (Product product : products) {
             product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
         }
         return products;
+    }
 
+    @RequestMapping(value = "/subcategories/{id}")
+    public List<Product> getProductsBySubCategory(@PathVariable("id") Integer id, Model model) {
+        List<Product> products = productService.findAllBySubCategoryId(id);
+
+        for (Product product : products) {
+            product.setAbsolutImagename(ImageUtils.imageNameToAbsolutePath(product.getImagename()));
+        }
+
+        return products;
     }
 }

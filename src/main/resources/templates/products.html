@@ -20,7 +20,7 @@
 		<li><a href="/">Home</a> <span class="divider">/</span></li>
 		<li class="active">Products List</li>
     </ul>
-	<h3> Products List [{{productCount}}]</h3>	
+	<h3 th:text="Products List + ${count}"> Products List [{{productCount}}]</h3>
 	<hr class="soft"/>
 	<p>
 		You can select product you like.
@@ -29,18 +29,18 @@
 	  
 	<div class="tab-pane  active" id="blockView">
 		<ul class="thumbnails">
-			<li class="span3" ng-repeat="product in products">
+			<li class="span3"  th:each="product : ${products}">
 			  <div class="thumbnail">
-				<a th:href="${ '/product/view/?id=' +'{{product.productid}}'}" ><img ng-src="{{product.absolutImagename}}" alt=""/></a>
-				<div class="caption">
-				  <h5 >{{product.brand}}</h5>
-				  <p >{{product.model}} </p>
-				   <h4 style="text-align:center">
-					   <a class="btn" href="#" ><i class="icon-zoom-in"></i></a>
-					   <a class="btn"  href="#" ng-click="addToCart(product.productid)" >Add to <i class="icon-shopping-cart"></i></a>
-					   <a class="btn btn-primary" >C${{product.price}}</a>
-				   </h4>
-				</div>
+				<a th:href="${ '/product/view/' + product.productid}" ><img th:src="${product.absolutImagename}" alt=""/></a>
+				  <div class="caption">
+					  <h5 th:text="${product.productname}" >Product name</h5>
+					  <p th:text="${#strings.abbreviate(product.description,30)}">
+						  simply  text for product description.
+					  </p>
+					  <h4 style="text-align:center"><a class="btn" th:href="${'/product/view/' + product.productid}"> <i class="icon-zoom-in"></i></a>
+						  <a class="btn" href="#" th:onclick="'javascript:addItemToCart(\'' + ${product.productid} + '\');'">Add to <i class="icon-shopping-cart"></i></a>
+						  <a class="btn btn-primary" href="#" th:text="${'C$ '+product.price}">$222.00</a></h4>
+				  </div>
 			  </div>
 			</li>
 		  </ul>
