@@ -20,7 +20,7 @@
 		<li><a href="/">Home</a> <span class="divider">/</span></li>
 		<li class="active">Products List</li>
     </ul>
-	<h3 th:text="Products List + ${count}"> Products List [{{productCount}}]</h3>
+	<h3 th:text="${'Products Number: ' + count}"> Products List</h3>
 	<hr class="soft"/>
 	<p>
 		You can select product you like.

@@ -53,6 +53,8 @@ public class ProductController {
 			User user = userService.findByUsername(username);
 			itemViewRedisService.add(user, product);
 		}
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
 		return "productDetail";
 	}
 	
@@ -67,6 +69,7 @@ public class ProductController {
 			product.setAbsolutImagename(getFilename);
 		}
 		List<Category> categories = categoryService.findAll();
+		model.addAttribute("count", products.size());
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 		return "products";
@@ -83,6 +86,7 @@ public class ProductController {
 			product.setAbsolutImagename(getFilename);
 		}
 		List<Category> categories = categoryService.findAll();
+		model.addAttribute("count", products.size());
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 	return "products";

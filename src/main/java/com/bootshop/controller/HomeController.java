@@ -71,6 +71,7 @@ public class HomeController {
 		}*/
 		model.addAttribute("articles",articles);
 		model.addAttribute("products", products);
+		model.addAttribute("count", products.size());
 		return "index";
 	}
 	
