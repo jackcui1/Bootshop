@@ -33,7 +33,7 @@ public class Article implements Serializable{
     @NotEmpty(message = "*Please provide title")
     private String title;
 
-    @Column(name = "desc", nullable = true)
+    @Column(name = "descr", nullable = true)
     private String desc;
 
     @Column(name = "body", columnDefinition = "TEXT")

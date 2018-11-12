@@ -5,8 +5,12 @@
 <head th:include="fragments/bootshop_head :: bootshop_head">
 </head>
 <body>
+	<div ng-app="cartApp">
+		<div ng-controller="cartCtrl" ng-init="init()">
+			<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+		</div>
+	</div>
 
-	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
 
 	<div id="mainBody">
 		<div class="container">
@@ -18,8 +22,8 @@
 				<div id="sidebar" class="span9">
 					<h1>Order confirm</h1>
 					<form method="post">
-						<input type="hidden" name="_flowExecutionKey" th:value="${flowExecutionKey}" /> 
-						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						<input type="hidden" name="_flowExecutionKey" th:value="${flowExecutionKey}" />
+						<!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
 						<h3>Order detail</h3>
 						<table class="table table-bordered table-striped">
 							<thead>

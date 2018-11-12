@@ -96,7 +96,7 @@ public class CartRestController {
 		return cart;
 	}
 
-	@RequestMapping(value = "/add/{productid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/add/{productid}", method = RequestMethod.PUT)
 	public void addtoCart(@PathVariable int productid,
 			HttpServletRequest request, HttpServletResponse response)
 			throws JsonParseException, JsonMappingException, IOException {

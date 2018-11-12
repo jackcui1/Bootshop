@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" ng-app="cartApp">
+
+<head th:include="fragments/bootshop_head :: bootshop_head">
+</head>
+<body ng-controller="cartCtrl" ng-init="init()">
+
+	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				<!--  ============== Sidebar ============== -->
+				<div id="sidebar" class="span3"
+					th:include="fragments/bootshop_leftnav:: bootshop_leftnav"></div>
+
+				<div class="span9">
+					<section id="Table">
+						<div class="page-header">
+							<h3>Customers' contact and message information</h3>
+							<p class="lead">This are the customers' contact and message!</p>
+						</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>First name</th>
+									<th>Last name</th>
+									<th>Email address</th>
+									<th>Message</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="contact : ${contacts}">
+									<td th:text="${contact.id}"></td>
+									<td th:text="${contact.firstname}"></td>
+									<td th:text="${contact.lastname}"></td>
+									<td th:text="${contact.email}"></td>
+									<td th:text="${contact.message}"></td>
+									<td><a th:href="${'/admin/deletecontact/'+ contact.id}"> <span
+											class="glyphicon glyphicon-remove"><i class="icon-remove icon-white"></i></span>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footerSection"
+		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+</body>
+</html>

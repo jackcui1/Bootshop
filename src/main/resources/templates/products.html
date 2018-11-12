@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" ng-app="homeApp">
+	xmlns:th="http://www.thymeleaf.org" ng-app="cartApp">
 
 <head th:include="fragments/bootshop_head :: bootshop_head">
 </head>
-<body ng-controller="homeCtrl" ng-init="init()">
+<body ng-controller="cartCtrl" ng-init="init()">
 
-	<div th:include="fragments/bootshop_header:: bootshop_header"></div>
-
-	<div id="mainBody" ng-app="homeApp">
+	<div >
+		<div th:include="fragments/bootshop_header:: bootshop_header"></div>
+	</div>
+	<div id="mainBody">
 		<div class="container" >
 			<div class="row">
 				<!--  ============== Sidebar ============== -->
@@ -38,7 +39,7 @@
 						  simply  text for product description.
 					  </p>
 					  <h4 style="text-align:center"><a class="btn" th:href="${'/product/view/' + product.productid}"> <i class="icon-zoom-in"></i></a>
-						  <a class="btn" href="#" th:onclick="'javascript:addItemToCart(\'' + ${product.productid} + '\');'">Add to <i class="icon-shopping-cart"></i></a>
+						  <a class="btn" th:attr="ng-click='addToCart(\''+${product.productid}+'\');'">Add to <i class="icon-shopping-cart"></i></a>
 						  <a class="btn btn-primary" href="#" th:text="${'C$ '+product.price}">$222.00</a></h4>
 				  </div>
 			  </div>
@@ -69,12 +70,6 @@
 		</div>
 
 	<!-- mainBody -->
-	
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
-	<script th:src="@{/js/homeController.js}"></script>
-	<div id="footerSection"
-		th:include="fragments/bootshop_footer :: bootshop_footer"></div>
+	<div id="footerSection" th:include="fragments/bootshop_footer :: bootshop_footer"></div>
 </body>
 </html>

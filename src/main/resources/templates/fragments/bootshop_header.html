@@ -5,10 +5,10 @@
 <div id="welcomeLine" class="row">
 	<div class="span6">Welcome!&nbsp;&nbsp;<strong sec:authorize="isAuthenticated()" sec:authentication="name"> User</strong></div>
 	<div class="span6">
-	<div class="pull-right" >
+	<div class="pull-right">
 		
-		<span class="btn btn-mini" id="cart-item-grandtotal">C$0.00</span>
-		<a href="/cart/"><span class="btn btn-mini btn-primary" id="cart-item-count"><i class="icon-shopping-cart icon-white"></i> [ 0 ] Itemes in your cart </span> </a>
+		<span class="btn btn-mini" id="cart-item-grandtotal">C${{cart.grandTotal}}</span>
+		<a href="/cart/"><span class="btn btn-mini btn-primary" id="cart-item-count"><i class="icon-shopping-cart icon-white"></i> {{cart.cartItems.length}} Itemes in your cart </span> </a>
 		<a href="/login" sec:authorize="isAnonymous()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Login</span> </a> 
 		<a th:href="@{/logout}" sec:authorize="isAuthenticated()"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Logout</span> </a>
 		<a th:href="@{/admin/}" sec:authorize-url="/admin/"><span class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i>Admin</span> </a>

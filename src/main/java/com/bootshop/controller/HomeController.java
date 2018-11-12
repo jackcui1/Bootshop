@@ -42,6 +42,8 @@ public class HomeController {
 	
 	@RequestMapping(value="/login")
 	public String bootshoplogin(Model model) {
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
 		return "login";
 	}
 	

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" ng-app="cartApp">
 	
   <head th:include="fragments/bootshop_head :: bootshop_head">
 </head>
-<body>
+<body ng-controller="cartCtrl" ng-init="init()">
 
 <div th:include="fragments/bootshop_header:: bootshop_header"></div>
 
@@ -62,8 +62,8 @@
 	
 </div>
 </div></div>
-</div>	
-			
+</div>
+
 <div id="footerSection" th:include="fragments/bootshop_footer :: bootshop_footer"></div>
 </body>
 </html>
