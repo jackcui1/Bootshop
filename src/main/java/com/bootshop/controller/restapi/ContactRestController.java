@@ -5,6 +5,8 @@ import com.bootshop.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Guowei Cui
  * @date 2018/11/10 7:46
@@ -31,6 +33,11 @@ public class ContactRestController {
         Contact contactInfo = service.findById(1);
         contact.setArticle(contactInfo.getArticle());
         return service.save(contact);
+    }
+
+    @RequestMapping("/email/{email:.+}")
+    public Boolean isExistEmail(@PathVariable String email) {
+        return service.findByEmail(email);
     }
 
 }

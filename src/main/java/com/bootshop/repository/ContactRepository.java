@@ -3,7 +3,9 @@ package com.bootshop.repository;
 
 import com.bootshop.model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 
 
 /**
@@ -11,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2018/11/10 8:35
  */
 public interface ContactRepository extends JpaRepository<Contact, Integer>{
-    Boolean findContactByEmail(String email);
+
+    public Contact findByEmail(String email);
 }
 

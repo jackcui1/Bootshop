@@ -37,7 +37,9 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
     public Boolean findByEmail(String email) {
-        return repository.findContactByEmail(email);
+        Contact contact = repository.findByEmail(email);
+
+        return contact != null ? true : false;
     }
 
     @Override
